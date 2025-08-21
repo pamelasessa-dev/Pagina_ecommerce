@@ -1,28 +1,31 @@
 document.getElementById('loginForm').addEventListener('submit', function(event) {
 event.preventDefault(); // Evita el envío por defecto
             
-const usuario = document.getElementById('usuario').value();
-const contrasena = document.getElementById('contrasena').value();
-            let isValid = true;
+const usuario = document.getElementById('usuario').value.trim();
+const contrasena = document.getElementById('contrasena').value.trim();
+            let valid = true;
 
-// Validación de usuario
-            if (usuario === '') {
-document.getElementById('usuarioError').textContent = 'Ingresa tu usuario';
-                isValid = false;
-            } else {
-document.getElementById('usuarioError').textContent = '';
-            }
+ // Validaciones
+        if (usuario && contrasena) {
+sessionStorage.setItem('loggedIn', 'si');
 
-// Validación de contraseña
-            if (contrasena === '') {
-document.getElementById('contrasenaError').textContent = 'Ingresa tu contraseña';
-                isValid = false;
-            } else {
-document.getElementById('contrasenaError').textContent = '';
-            }
+        // Redirección si es válido
+        localStorage.setItem('usuario', usuario);
+        localStorage.setItem('contraseña', contrasena);
+       
+       // Redireccion a index.html
+        window.location.href = 'index.html';
+} else {
+    alert('Por favor, complete ambos campos.')
+}
+    }
+    
+);
 
-// Redirección si es válido
-            if (isValid) {
-window.location.href = 'products.html';
-            }
-        });
+// Boton
+const regBtn = document.getElementById("regBtn");
+if (regBtn) {
+    regBtn.addEventListener("click", function() {
+                window.location.href = 'index.html'; 
+    });
+}
