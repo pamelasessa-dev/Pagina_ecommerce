@@ -23,6 +23,6 @@ document.getElementById('contrasenaError').textContent = '';
 
 // Redirección si es válido
             if (isValid) {
-window.location.href = 'products.html';
+window.location.href = 'index.html';
             }
         });
