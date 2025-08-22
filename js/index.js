@@ -12,3 +12,11 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  if (!sessionStorage.getItem("loggedIn")) {
+    location.replace("login.html");
+    return;
+  }
+});
