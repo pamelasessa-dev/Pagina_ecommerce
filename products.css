@@ -1,4 +1,3 @@
-
 body {
   font-family: 'Inter', sans-serif;
   background: #F8F9FA;
@@ -7,33 +6,16 @@ body {
   color: #000;
 }
 
-nav {
-  background: #F59E0B;
-  padding: 15px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.navbar img {
+  height: 30px;
+  float: left;
+  margin-right: 10px;
 }
-
-nav img {
-  height: 50px;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li a {
+main h1{
+  font-family: 'Inter', sans-serif;
   font-size: 20px;
-  text-decoration: none;
-  color: #000;
-  font-weight: 400;
+  float: left;
 }
-
 
 main h2 {
   margin: 40px 0 20px;
@@ -43,11 +25,11 @@ main h2 {
 }
 
 
-.products-container {
+.productos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 30px;
-  padding: 0 40px;
+  padding: 20px 40px;
 }
 
 
@@ -74,7 +56,6 @@ main h2 {
   margin-bottom: 10px;
 }
 
-
 .product-card .card-title {
   font-size: 20px;
   font-weight: 700;
@@ -83,7 +64,7 @@ main h2 {
 
 .product-card .description {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   color: #6B7280;
   margin: 5px 0;
 }
@@ -111,7 +92,6 @@ main h2 {
   padding: 10px 15px;
   font-weight: 600;
   cursor: pointer;
-  
 }
 
 .product-card button:hover {
