@@ -13,11 +13,3 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-
-  if (!sessionStorage.getItem("loggedIn")) {
-    location.replace("login.html");
-    return;
-  }
-});
-
