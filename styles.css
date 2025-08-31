@@ -100,7 +100,8 @@ a {
 
   }
   .logo{
-     
+      max-width: 100%;
+      padding-top: 2rem;
 }
   body {
     display: flex;
