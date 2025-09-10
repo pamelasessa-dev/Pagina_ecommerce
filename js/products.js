@@ -1,4 +1,4 @@
-const API_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"
+const API_URL = "https://japceibal.github.io/emercado-api/cats_products/102.json"
 
 // Crear card HTML
 function crearCard(product) {
@@ -16,6 +16,8 @@ function crearCard(product) {
     </div>
 </div>`;
 }
+
+
 
 // Renderizar
 function renderizar(data) {
