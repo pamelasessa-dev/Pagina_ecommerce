@@ -9,10 +9,10 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="products.css" rel="stylesheet">
+  <link href="css/products.css" rel="stylesheet">
 </head>
 
-<body>
+<body> 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <img src="img/e-mercado.png" alt="Logo eMercado">
@@ -38,19 +38,59 @@
       </div>
     </div>
   </nav>
+  
   <main class="pb-5 container">
-    <h1>Nuestros Productos</h1>
-    <div class="productos-grid"></div>
-  </main>
+  <h1 class="mb-4">Nuestros Productos</h1>
 
-  <footer class="text-muted">
+  <!-- Barra superior con buscador y filtros -->
+  <section id="barra-filtros" class="card p-3 shadow-sm mb-4">
+    <div class="row g-3 align-items-center">
+
+      <!-- Buscador -->
+      <div class="col-md-4">
+        <input type="search" id="buscador" class="form-control" placeholder="Buscar productos...">
+      </div>
+
+      <!-- Precio mínimo -->
+      <div class="col-md-2">
+        <input type="number" id="precioMinimo" class="form-control" placeholder="Precio mín.">
+      </div>
+
+      <!-- Precio máximo -->
+      <div class="col-md-2">
+        <input type="number" id="precioMaximo" class="form-control" placeholder="Precio máx.">
+      </div>
+
+      <!-- Botones filtrar/limpiar -->
+      <div class="col-md-2 d-flex gap-2">
+        <button id="btnFiltrar" class="btn btn-dark btn-sm">Filtrar</button>
+        <button id="btnLimpiar" class="btn btn-outline-secondary btn-sm">Limpiar</button>
+      </div>
+
+      <!-- Botones de orden -->
+      <div class="col-md-2 d-flex gap-2 flex-wrap">
+        <button id="ordenAsc" class="btn btn-primary btn-sm">↑Asc</button>
+        <button id="ordenDesc" class="btn btn-primary btn-sm">↓Des</button>
+        <button id="ordenRel" class="btn btn-primary btn-sm">★Rel</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Productos -->
+  <section>
+    <div class="productos-grid mb-5"></div>
+  </section>
+</main>
+
+  <footer class="text-muted bg-light py-3 mt-auto">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jóvenes a Programar</a></p>
     </div>
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -59,10 +99,11 @@
       <div></div>
     </div>
   </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
   <script src="js/user.js"></script>
-</body>
 
+</body>
 </html>

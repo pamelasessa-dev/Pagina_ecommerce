@@ -12,10 +12,9 @@ body {
   margin-right: 10px;
 }
 
-main h1{
-  font-family: 'Inter', sans-serif;
+main h1 {
   font-size: 20px;
-  float: left;
+  margin-bottom: 1rem;
 }
 
 main h2 {
@@ -33,9 +32,8 @@ main h2 {
   padding: 20px 40px;
 }
 
-
 .product-card {
-  background: #FFFFFF;
+  background: #fff;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -61,6 +59,7 @@ main h2 {
   font-size: 20px;
   font-weight: 700;
   margin: 5px 0;
+  text-align: center;
 }
 
 .product-card .description {
@@ -68,6 +67,7 @@ main h2 {
   font-weight: 500;
   color: #6B7280;
   margin: 5px 0;
+  text-align: center;
 }
 
 .product-card .price {
@@ -82,7 +82,6 @@ main h2 {
   font-weight: 700;
   color: #6B7280;
 }
-
 
 .product-card button {
   margin-top: auto;
@@ -135,4 +134,49 @@ main h2 {
     height: 1.5rem;
     margin-right: 0.375rem;
   }
+}
+
+/* -- Filtros y buscador -- */
+
+#barra-filtros {
+  background: #fff;
+}
+
+#barra-filtros input {
+  font-size: 14px;
+  padding: 6px 10px;
+}
+
+#barra-filtros button {
+  font-size: 14px;
+  padding: 6px 10px;
+}
+
+#btnLimpiar {
+  background: none;
+  color: black;
+}
+
+#btnLimpiar:hover {
+  text-decoration: underline;
+  background: none;
+}
+#btnFiltrar:hover{
+  text-decoration: underline;
+
+}
+
+#ordenAsc{
+  background-color: grey;
+  color: black;
+}
+
+#ordenDesc{
+  background-color: grey;
+  color: black;
+}
+
+#ordenRel{
+  background-color: grey;
+  color: black;
 }
