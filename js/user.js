@@ -14,3 +14,11 @@
     contenedor.textContent = nombre;
   }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const loggedIn = sessionStorage.getItem("loggedIn");
+
+    if (loggedIn !== "true") {
+      alert("Debes iniciar sesión para acceder.");
+      window.location.replace("login.html"); 
+    }
+  });

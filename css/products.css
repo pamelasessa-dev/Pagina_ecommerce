@@ -12,10 +12,9 @@ body {
   margin-right: 10px;
 }
 
-main h1{
-  font-family: 'Inter', sans-serif;
+main h1 {
   font-size: 20px;
-  float: left;
+  margin-bottom: 1rem;
 }
 
 main h2 {
@@ -137,51 +136,47 @@ main h2 {
   }
 }
 
-#ordenar-filtros{
-  margin-bottom: 1.5rem;
-}
-.precio-filtros{
-  display: flex;
-  align-items:center;
-  margin-bottom: 1rem;
-}
-.precio-filtros label{
-  margin-right: 0.5rem;
-  font-weight: 600;
-}
-.precio-filtros input[type="number"]{
-  width: 120px;
-  margin-right: 0.5rem;
-  padding: 5px;
+/* -- Filtros y buscador -- */
+
+#barra-filtros {
+  background: #fff;
 }
 
-#ordenar-filtros button{
-  margin-right: 0.5rem;
-  padding: 6px 12px;
-  border: none;
-  background-color: #343a40;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
+#barra-filtros input {
+  font-size: 14px;
+  padding: 6px 10px;
 }
 
-#ordenar-filtros button:hover{
-  background-color: #495057;
+#barra-filtros button {
+  font-size: 14px;
+  padding: 6px 10px;
 }
-
 
 #btnLimpiar {
   background: none;
-  color: #007bff;
+  color: black;
 }
 
 #btnLimpiar:hover {
   text-decoration: underline;
   background: none;
 }
+#btnFiltrar:hover{
+  text-decoration: underline;
 
+}
 
-.filtros-orden {
-  display: flex;
-  gap: 0.5rem;
+#ordenAsc{
+  background-color: grey;
+  color: black;
+}
+
+#ordenDesc{
+  background-color: grey;
+  color: black;
+}
+
+#ordenRel{
+  background-color: grey;
+  color: black;
 }

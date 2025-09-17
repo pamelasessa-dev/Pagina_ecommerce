@@ -66,4 +66,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const ordenados = [...products].sort((a, b) => b.soldCount - a.soldCount);
     renderizar(ordenados);
   });
+
+  const buscador = document.getElementById("buscador");
+  buscador.addEventListener("input", () => {
+    const texto = buscador.value.toLowerCase();
+
+    const filtrados = products.filter(p =>
+      p.name.toLowerCase().includes(texto) ||
+      p.description.toLowerCase().includes(texto)
+    );
+
+    renderizar(filtrados);
+  });
+  
 });

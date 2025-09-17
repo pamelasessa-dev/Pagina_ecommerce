@@ -38,33 +38,49 @@
       </div>
     </div>
   </nav>
-
- <main class="pb-5 container">
+  
+  <main class="pb-5 container">
   <h1 class="mb-4">Nuestros Productos</h1>
-  <div class="productos-grid mb-5"></div>
-  <section id="ordenar-filtros" class="card p-3 shadow-sm">
-    <h5 class="mb-3">Filtros y orden</h5>
-    <div class="row mb-3 align-items-center">
-      <label for="precioMinimo" class="col-sm-2 col-form-label">Precio mínimo</label>
-      <div class="col-sm-4">
-        <input type="number" id="precioMinimo" class="form-control" placeholder="Ej: 100">
+
+  <!-- Barra superior con buscador y filtros -->
+  <section id="barra-filtros" class="card p-3 shadow-sm mb-4">
+    <div class="row g-3 align-items-center">
+
+      <!-- Buscador -->
+      <div class="col-md-4">
+        <input type="search" id="buscador" class="form-control" placeholder="Buscar productos...">
       </div>
-      <label for="precioMaximo" class="col-sm-2 col-form-label">Precio máximo</label>
-      <div class="col-sm-4">
-        <input type="number" id="precioMaximo" class="form-control" placeholder="Ej: 1000">
+
+      <!-- Precio mínimo -->
+      <div class="col-md-2">
+        <input type="number" id="precioMinimo" class="form-control" placeholder="Precio mín.">
       </div>
-    </div>
-    <div class="mb-3">
-      <button id="btnFiltrar" class="btn btn-dark me-2">Filtrar</button>
-      <button id="btnLimpiar" class="btn btn-outline-secondary">Limpiar</button>
-    </div>
-    <div class="d-flex gap-2">
-      <button id="ordenAsc" class="btn btn-primary">Precio ↑</button>
-      <button id="ordenDesc" class="btn btn-primary">Precio ↓</button>
-      <button id="ordenRel" class="btn btn-primary">Más relevantes</button>
+
+      <!-- Precio máximo -->
+      <div class="col-md-2">
+        <input type="number" id="precioMaximo" class="form-control" placeholder="Precio máx.">
+      </div>
+
+      <!-- Botones filtrar/limpiar -->
+      <div class="col-md-2 d-flex gap-2">
+        <button id="btnFiltrar" class="btn btn-dark btn-sm">Filtrar</button>
+        <button id="btnLimpiar" class="btn btn-outline-secondary btn-sm">Limpiar</button>
+      </div>
+
+      <!-- Botones de orden -->
+      <div class="col-md-2 d-flex gap-2 flex-wrap">
+        <button id="ordenAsc" class="btn btn-primary btn-sm">↑Asc</button>
+        <button id="ordenDesc" class="btn btn-primary btn-sm">↓Des</button>
+        <button id="ordenRel" class="btn btn-primary btn-sm">★Rel</button>
+      </div>
     </div>
   </section>
- </main>
+
+  <!-- Productos -->
+  <section>
+    <div class="productos-grid mb-5"></div>
+  </section>
+</main>
 
   <footer class="text-muted bg-light py-3 mt-auto">
     <div class="container">
