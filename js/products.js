@@ -1,4 +1,6 @@
+
 const API_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+
 
 let products = [];
 
@@ -16,10 +18,26 @@ function crearCard(product) {
   `;
 }
 
+
 // Renderizar 
 function renderizar(lista) {
   const grid = document.querySelector(".productos-grid");
   grid.innerHTML = lista.map(crearCard).join("");
+
+
+
+// Renderizar
+function renderizar(data) {
+    console.log("renderizando lista", data)
+    const grid = document.querySelector('.productos-grid');
+    
+    if (!grid) {
+        console.error("no se encontró producto grid");
+        return;
+    }
+    
+    // data.products es el array de productos
+    grid.innerHTML = data.products.map(crearCard).join('');
 }
 
 // Fetch productos
