@@ -1,100 +1,88 @@
-
-const API_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
-
+const catID = localStorage.getItem("catID") || "101";
+const API_URL = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 
 let products = [];
 
-// Product Card
+// Product card 
 function crearCard(product) {
-  return `
+    return `
     <div class="product-card">
-        <img src="${product.image}" alt="Imagen del producto">
-        <h5 class="card-title">${product.name}</h5>
-        <p class="description">${product.description}</p>
-        <p class="price">${product.cost} ${product.currency}</p>
-        <p class="sold">${product.soldCount} vendidos</p>
-        <button>Agregar al carrito</button>
-    </div>
-  `;
+        <img src="${product.image}" alt="${product.name}" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">${product.name}</h5>
+            <p class="card-text">${product.description}</p>
+            <p class="card-text">${product.cost} ${product.currency}</p>
+            <p class="card-text">${product.soldCount} vendidos</p>
+            <button class="btn btn-primary">Agregar al carrito</button>
+        </div>
+    </div>`;
 }
 
-
-// Renderizar 
+// Renderizar lista
 function renderizar(lista) {
-  const grid = document.querySelector(".productos-grid");
-  grid.innerHTML = lista.map(crearCard).join("");
-
-
-
-// Renderizar
-function renderizar(data) {
-    console.log("renderizando lista", data)
     const grid = document.querySelector('.productos-grid');
-    
     if (!grid) {
-        console.error("no se encontró producto grid");
+        console.error("No se encontró el contenedor productos-grid");
         return;
     }
-    
-    // data.products es el array de productos
-    grid.innerHTML = data.products.map(crearCard).join('');
+    grid.innerHTML = lista.map(crearCard).join('');
 }
 
-// Fetch productos
+// Cargar productos de la API
 function cargarProductos() {
-  fetch(API_URL)
-    .then(res => res.json())
-    .then(data => {
-      products = data.products; 
-      renderizar(products);
-    })
-    .catch(error => console.error("Error al cargar productos:", error));
+    fetch(API_URL)
+        .then(res => {
+            if (!res.ok) throw new Error("Error al cargar productos");
+            return res.json();
+        })
+        .then(data => {
+            products = data.products;
+            renderizar(products);
+        })
+        .catch(error => {
+            console.error("Error al cargar productos:", error);
+        });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  cargarProductos();
+// Filtrado, orden y búscador
+document.addEventListener('DOMContentLoaded', () => {
+    cargarProductos();
 
-  // Filtros
-  document.getElementById("btnFiltrar").addEventListener("click", () => {
-    const min = parseInt(document.getElementById("precioMinimo").value) || 0;
-    const max = parseInt(document.getElementById("precioMaximo").value) || Infinity;
+    document.getElementById("btnFiltrar").addEventListener("click", () => {
+        const min = parseInt(document.getElementById("precioMinimo").value) || 0;
+        const max = parseInt(document.getElementById("precioMaximo").value) || Infinity;
 
-    const filtrados = products.filter(p => p.cost >= min && p.cost <= max);
-    renderizar(filtrados);
-  });
+        const filtrados = products.filter(p => p.cost >= min && p.cost <= max);
+        renderizar(filtrados);
+    });
 
-  document.getElementById("btnLimpiar").addEventListener("click", () => {
-    document.getElementById("precioMinimo").value = "";
-    document.getElementById("precioMaximo").value = "";
-    renderizar(products);
-  });
+    document.getElementById("btnLimpiar").addEventListener("click", () => {
+        document.getElementById("precioMinimo").value = "";
+        document.getElementById("precioMaximo").value = "";
+        renderizar(products);
+    });
 
-  // Ordenar
-  document.getElementById("ordenAsc").addEventListener("click", () => {
-    const ordenados = [...products].sort((a, b) => a.cost - b.cost);
-    renderizar(ordenados);
-  });
+    document.getElementById("ordenAsc").addEventListener("click", () => {
+        const ordenados = [...products].sort((a, b) => a.cost - b.cost);
+        renderizar(ordenados);
+    });
 
-  document.getElementById("ordenDesc").addEventListener("click", () => {
-    const ordenados = [...products].sort((a, b) => b.cost - a.cost);
-    renderizar(ordenados);
-  });
+    document.getElementById("ordenDesc").addEventListener("click", () => {
+        const ordenados = [...products].sort((a, b) => b.cost - a.cost);
+        renderizar(ordenados);
+    });
 
-  document.getElementById("ordenRel").addEventListener("click", () => {
-    const ordenados = [...products].sort((a, b) => b.soldCount - a.soldCount);
-    renderizar(ordenados);
-  });
+    document.getElementById("ordenRel").addEventListener("click", () => {
+        const ordenados = [...products].sort((a, b) => b.soldCount - a.soldCount);
+        renderizar(ordenados);
+    });
 
-  const buscador = document.getElementById("buscador");
-  buscador.addEventListener("input", () => {
-    const texto = buscador.value.toLowerCase();
-
-    const filtrados = products.filter(p =>
-      p.name.toLowerCase().includes(texto) ||
-      p.description.toLowerCase().includes(texto)
-    );
-
-    renderizar(filtrados);
-  });
-  
+    document.getElementById("buscador").addEventListener("input", () => {
+        const texto = document.getElementById("buscador").value.toLowerCase();
+        const filtrados = products.filter(p =>
+            p.name.toLowerCase().includes(texto) ||
+            p.description.toLowerCase().includes(texto)
+        );
+        renderizar(filtrados);
+    });
 });
