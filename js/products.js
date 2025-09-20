@@ -2,7 +2,7 @@ const catID = localStorage.getItem("catID") || "101";
 const API_URL = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 
 let products = []; // Todos los productos
-let productosVisibles = []; // muestra los filtros y orden aplicados
+let productosVisibles = []; // con filtros y orden 
 
 // Product card 
 function crearCard(product) {
