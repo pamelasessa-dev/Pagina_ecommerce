@@ -1,67 +1,282 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="/css/styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Producto - eMercado</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/product-info.css">
 </head>
-
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
-</body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav w-100 justify-content-between">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categories.html">Categorías</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sell.html">Vender</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="nombreDeUsuario" class="nav-link" href="#">Usuario</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Main Content -->
+    <main class="container mt-4">
+        <!-- Loading Indicator -->
+        <div id="loading" class="text-center py-5" style="display: none;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+            <p class="mt-2">Cargando información del producto...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="alert alert-danger" style="display: none;">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <span id="error-text">Error al cargar el producto. Por favor, intente nuevamente.</span>
+        </div>
+
+        <!-- Product Content -->
+        <div id="product-container">
+            <!-- Category Title -->
+            <h1 id="category-name" class="mb-4">Autos</h1>
+            
+            <!-- Main Product Section -->
+            <div class="row">
+                <!-- Thumbnails Column -->
+                <div class="col-md-2 mb-4">
+                    <div id="thumbnails-container">
+                        <div class="thumbnail-item active" data-bs-target="#productCarousel" data-bs-slide-to="0" aria-current="true">
+                            <img src="img/car1.jpg" alt="Vista frontal" class="img-fluid">
+                        </div>
+                        <div class="thumbnail-item" data-bs-target="#productCarousel" data-bs-slide-to="1">
+                            <img src="img/car2.jpg" alt="Vista lateral" class="img-fluid">
+                        </div>
+                        <div class="thumbnail-item" data-bs-target="#productCarousel" data-bs-slide-to="2">
+                            <img src="img/car3.jpg" alt="Vista trasera" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Image Column -->
+                <div class="col-md-5 mb-4">
+                    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/car1.jpg" class="d-block w-100" alt="Vista frontal del vehículo">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/car2.jpg" class="d-block w-100" alt="Vista lateral del vehículo">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/car3.jpg" class="d-block w-100" alt="Vista trasera del vehículo">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Anterior</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Siguiente</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product Info Column -->
+                <div class="col-md-5">
+                    <div class="product-info">
+                        <h2 id="product-name">Cargando...</h2>
+                        <div class="price-container mb-3">
+                            <span id="product-cost" class="h3 text-success fw-bold">-</span>
+                            <span id="product-currency" class="ms-1"></span>
+                        </div>
+                        <p id="product-description" class="text-muted"></p>
+                        <div class="d-flex align-items-center mb-3">
+                            <span id="sold-count" class="badge bg-secondary me-2"></span>
+                            <span id="product-category" class="badge bg-info"></span>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="d-grid gap-2">
+                            <button id="add-to-cart" class="btn btn-warning">
+                                <i class="fas fa-shopping-cart me-2"></i>Agregar al carrito
+                            </button>
+                            <button id="buy-now" class="btn btn-outline-warning">
+                                Comprar Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Details -->
+            <div class="row">
+                <div class="col-12">
+                    <section id="product-details" class="mt-5 pt-4">
+                        <div class="availability p-4">
+                            <p class="mb-3">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Disponible para entrega inmediata</span>
+                            </p>
+                            <p class="mb-3">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Hasta 12 cuotas sin interés</span>
+                            </p>
+                            <p class="mb-0">
+                                <i class="fas fa-truck"></i>
+                                <span>Envío a todo el país</span>
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            
+            <!-- Related Products Section -->
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <section id="related-products-section" class="mt-5 pt-4 border-top">
+                        <h3 class="mb-4 text-center">Productos relacionados</h3>
+                        <div id="related-products" class="row g-3 justify-content-center">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="card h-100">
+                                    <img src="img/car2.jpg" class="card-img-top" alt="Producto relacionado" style="height: 150px; object-fit: cover;">
+                                    <div class="card-body text-center">
+                                        <h6 class="card-title">Volkswagen Gol Trend</h6>
+                                        <p class="card-text text-success fw-bold">$15.200 USD</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="card h-100">
+                                    <img src="img/car3.jpg" class="card-img-top" alt="Producto relacionado" style="height: 150px; object-fit: cover;">
+                                    <div class="card-body text-center">
+                                        <h6 class="card-title">Ford Fiesta</h6>
+                                        <p class="card-text text-success fw-bold">$14.800 USD</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="card h-100">
+                                    <img src="img/car4.jpg" class="card-img-top" alt="Producto relacionado" style="height: 150px; object-fit: cover;">
+                                    <div class="card-body text-center">
+                                        <h6 class="card-title">Toyota Etios</h6>
+                                        <p class="card-text text-success fw-bold">$16.500 USD</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            
+            <!-- Comments Section -->
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <section id="comments-section" class="mt-5 pt-4 border-top">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="mb-0">Calificaciones y opiniones</h3>
+                            <button id="add-comment" class="btn btn-outline-primary">
+                                <i class="fas fa-pen me-2"></i>Escribir opinión
+                            </button>
+                        </div>
+                        
+                        <div id="comments-container">
+                            <!-- Comment Example -->
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                            U
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">Usuario123</h6>
+                                            <div class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <small class="text-muted ms-auto">Hace 1 semana</small>
+                                    </div>
+                                    <p class="card-text mt-2">Excelente auto, muy buen consumo y cómodo para la ciudad. Lo recomiendo.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- No Comments Message (Hidden when there are comments) -->
+                            <div id="no-comments" class="text-center py-4 text-muted" style="display: none;">
+                                <i class="far fa-comments fa-3x mb-3"></i>
+                                <p class="mb-0">Sé el primero en opinar sobre este producto</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>e-Mercado</h5>
+                    <p>Tu tienda en línea de confianza</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">Inicio</a></li>
+                        <li><a href="categories.html" class="text-white">Categorías</a></li>
+                        <li><a href="sell.html" class="text-white">Vender</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> contacto@emercado.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +123 456 7890</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 e-Mercado. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/product-info.js"></script>
+</body>
 </html>

@@ -1,0 +1,321 @@
+/* Product Info Page Styles */
+/* Add your custom styles here */
+
+/* Estilos generales */
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilos para el contenedor principal */
+#product-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilos para el carrusel principal */
+#productCarousel {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+#productCarousel .carousel-inner {
+    border-radius: 8px;
+}
+
+#productCarousel .carousel-item img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* Estilos para las miniaturas */
+#thumbnails-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    padding-right: 15px;
+}
+
+.thumbnail-item {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.thumbnail-item:hover,
+.thumbnail-item.active {
+    opacity: 1;
+    border-color: #ffc107;
+}
+
+.thumbnail-item img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Estilos para los controles del carrusel */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 8%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#productCarousel:hover .carousel-control-prev,
+#productCarousel:hover .carousel-control-next {
+    opacity: 1;
+}
+
+/* Estilos para la información del producto */
+.product-info {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.product-info h2 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.price-container {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    min-width: 200px;
+}
+
+/* Estilos para los botones de acción */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-warning,
+.btn-outline-warning {
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s ease;
+    min-width: 180px;
+    text-align: center;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-warning {
+    color: #ffc107;
+    border-color: #ffc107;
+    background-color: transparent;
+}
+
+.btn-outline-warning:hover {
+    background-color: #fff3cd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los detalles del producto */
+#product-details {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+#product-details h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: left;
+    padding-bottom: 0.75rem;
+    position: relative;
+}
+
+#product-details h5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #ffc107;
+}
+
+#product-specs {
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+#product-specs li {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #eee;
+    display: flex;
+    align-items: center;
+}
+
+#product-specs li:last-child {
+    border-bottom: none;
+}
+
+#product-specs i {
+    width: 24px;
+    text-align: center;
+    margin-right: 10px;
+    color: #6c757d;
+}
+
+.availability {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 2rem;
+}
+
+.availability p {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.availability i {
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+/* Estilos para la sección de productos relacionados */
+#related-products-section {
+    margin-top: 4rem;
+}
+
+#related-products-section h3 {
+    color: #2c3e50;
+    font-weight: 600;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #f1f1f1;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Estilos para la sección de comentarios */
+#comments-section {
+    margin-top: 4rem;
+    border-top: 1px solid #eee;
+    padding-top: 2rem;
+}
+
+#comments-section h3 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Estilos responsivos */
+@media (max-width: 992px) {
+    #product-container {
+        padding: 1rem;
+    }
+    
+    #productCarousel .carousel-item img {
+        height: 350px;
+    }
+    
+    .thumbnail-item {
+        height: 70px;
+    }
+    
+    #product-specs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #thumbnails-container {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px 0;
+        margin-bottom: 15px;
+    }
+    
+    .thumbnail-item {
+        min-width: 80px;
+    }
+    
+    #productCarousel .carousel-item img {
+        height: 300px;
+    }
+    
+    .product-info h2 {
+        font-size: 1.75rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-warning,
+    .btn-outline-warning {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    #product-specs {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    #productCarousel .carousel-item img {
+        height: 250px;
+    }
+    
+    .thumbnail-item {
+        height: 60px;
+        min-width: 70px;
+    }
+}
