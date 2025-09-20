@@ -1,7 +1,8 @@
 const catID = localStorage.getItem("catID") || "101";
 const API_URL = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 
-let products = [];
+let products = []; // Todos los productos
+let productosVisibles = []; // muestra los filtros y orden aplicados
 
 // Product card 
 function crearCard(product) {
@@ -21,11 +22,9 @@ function crearCard(product) {
 // Renderizar lista
 function renderizar(lista) {
     const grid = document.querySelector('.productos-grid');
-    if (!grid) {
-        console.error("No se encontró el contenedor productos-grid");
-        return;
-    }
+    if (!grid) return;
     grid.innerHTML = lista.map(crearCard).join('');
+    productosVisibles = lista; // actualizar estado
 }
 
 // Cargar productos de la API
@@ -44,7 +43,7 @@ function cargarProductos() {
         });
 }
 
-// Filtrado, orden y búscador
+// Filtrado, orden y buscador
 document.addEventListener('DOMContentLoaded', () => {
     cargarProductos();
 
@@ -63,17 +62,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById("ordenAsc").addEventListener("click", () => {
-        const ordenados = [...products].sort((a, b) => a.cost - b.cost);
+        const ordenados = [...productosVisibles].sort((a, b) => a.cost - b.cost);
         renderizar(ordenados);
     });
 
     document.getElementById("ordenDesc").addEventListener("click", () => {
-        const ordenados = [...products].sort((a, b) => b.cost - a.cost);
+        const ordenados = [...productosVisibles].sort((a, b) => b.cost - a.cost);
         renderizar(ordenados);
     });
 
     document.getElementById("ordenRel").addEventListener("click", () => {
-        const ordenados = [...products].sort((a, b) => b.soldCount - a.soldCount);
+        const ordenados = [...productosVisibles].sort((a, b) => b.soldCount - a.soldCount);
         renderizar(ordenados);
     });
 
