@@ -156,84 +156,69 @@
                     <section id="related-products-section" class="mt-5 pt-4 border-top">
                         <h3 class="mb-4 text-center">Productos relacionados</h3>
                         <div id="related-products" class="row g-3 justify-content-center">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                <div class="card h-100">
-                                    <img src="img/car2.jpg" class="card-img-top" alt="Producto relacionado" style="height: 150px; object-fit: cover;">
-                                    <div class="card-body text-center">
-                                        <h6 class="card-title">Volkswagen Gol Trend</h6>
-                                        <p class="card-text text-success fw-bold">$15.200 USD</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                <div class="card h-100">
-                                    <img src="img/car3.jpg" class="card-img-top" alt="Producto relacionado" style="height: 150px; object-fit: cover;">
-                                    <div class="card-body text-center">
-                                        <h6 class="card-title">Ford Fiesta</h6>
-                                        <p class="card-text text-success fw-bold">$14.800 USD</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                <div class="card h-100">
-                                    <img src="img/car4.jpg" class="card-img-top" alt="Producto relacionado" style="height: 150px; object-fit: cover;">
-                                    <div class="card-body text-center">
-                                        <h6 class="card-title">Toyota Etios</h6>
-                                        <p class="card-text text-success fw-bold">$16.500 USD</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </section>
                 </div>
             </div>
             
-            <!-- Comments Section -->
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <section id="comments-section" class="mt-5 pt-4 border-top">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h3 class="mb-0">Calificaciones y opiniones</h3>
-                            <button id="add-comment" class="btn btn-outline-primary">
-                                <i class="fas fa-pen me-2"></i>Escribir opinión
-                            </button>
-                        </div>
-                        
-                        <div id="comments-container">
-                            <!-- Comment Example -->
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <div class="user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                            U
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-0">Usuario123</h6>
-                                            <div class="text-warning">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <small class="text-muted ms-auto">Hace 1 semana</small>
-                                    </div>
-                                    <p class="card-text mt-2">Excelente auto, muy buen consumo y cómodo para la ciudad. Lo recomiendo.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- No Comments Message (Hidden when there are comments) -->
-                            <div id="no-comments" class="text-center py-4 text-muted" style="display: none;">
-                                <i class="far fa-comments fa-3x mb-3"></i>
-                                <p class="mb-0">Sé el primero en opinar sobre este producto</p>
-                            </div>
-                        </div>
-                    </section>
+<!-- Comments Section -->
+<div class="row justify-content-center">
+  <div class="col-12">
+    <section id="comments-section" class="mt-5 pt-4 border-top">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0">Calificaciones y opiniones</h3>
+        </button>
+      </div>
+
+      <!-- Comentarios cargados -->
+      <div id="comments-container">
+        <!-- Ejemplo de comentario -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <div class="user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                U
+              </div>
+              <div>
+                <h6 class="mb-0">Usuario</h6>
+                <div class="text-warning">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
                 </div>
+              </div>
+              <small class="text-muted ms-auto">Hace 1 semana</small>
             </div>
+            <p class="card-text mt-2">Excelente producto.Lo recomiendo.</p>
+          </div>
         </div>
-    </main>
+
+        <!-- Mensaje si no hay comentarios -->
+        <div id="no-comments" class="text-center py-4 text-muted" style="display: none;">
+          <i class="far fa-comments fa-3x mb-3"></i>
+          <p class="mb-0">Sé el primero en opinar sobre este producto</p>
+        </div>
+      </div>
+
+      <!-- Formulario de calificación -->
+      <div id="calificacion-form" class="mt-4">
+        <h5>Califica este producto</h5>
+        <div id="estrellas" class="mb-2">
+          <span class="fa fa-star" data-value="1"></span>
+          <span class="fa fa-star" data-value="2"></span>
+          <span class="fa fa-star" data-value="3"></span>
+          <span class="fa fa-star" data-value="4"></span>
+          <span class="fa fa-star" data-value="5"></span>
+        </div>
+        <textarea id="comentario" class="form-control mb-2" placeholder="Escribe tu opinión..."></textarea>
+        <button id="btnEnviar" class="btn btn-primary">Enviar</button>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+</main>
 
     <!-- Footer -->
     <footer class="bg-dark text-white mt-5 py-4">
@@ -244,18 +229,18 @@
                     <p>Tu tienda en línea de confianza</p>
                 </div>
                 <div class="col-md-3">
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> contacto@emercado.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +123 456 7890</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
                     <h5>Enlaces</h5>
                     <ul class="list-unstyled">
                         <li><a href="index.html" class="text-white">Inicio</a></li>
                         <li><a href="categories.html" class="text-white">Categorías</a></li>
                         <li><a href="sell.html" class="text-white">Vender</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>Contacto</h5>
-                    <ul class="list-unstyled">
-                        <li><i class="fas fa-envelope me-2"></i> contacto@emercado.com</li>
-                        <li><i class="fas fa-phone me-2"></i> +123 456 7890</li>
                     </ul>
                 </div>
             </div>
@@ -264,8 +249,15 @@
                 <p class="mb-0">&copy; 2025 e-Mercado. Todos los derechos reservados.</p>
             </div>
         </div>
-    </footer>
-    <div id="spinner-wrapper">
+        <div class="container">
+            <p class="float-end">
+            <a href="#" class="text-white">Volver arriba</a>
+        </p>
+        <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" class=" text-white" target="_blank">Jóvenes a Programar</a></p>
+    </div>
+</footer>
+    
+<div id="spinner-wrapper">
       <div class="lds-ring">
         <div></div>
         <div></div>

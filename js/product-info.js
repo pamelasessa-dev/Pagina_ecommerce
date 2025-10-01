@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Mostrar indicador de carga
+   
     document.getElementById('loading').style.display = 'block';
     document.getElementById('product-container').style.display = 'none';
     document.getElementById('error-message').style.display = 'none';
+
+    // trae el id del producto desde localStorage
 
     const productId = localStorage.getItem("selectedProductId");
 
@@ -12,27 +14,38 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    
+    // URL a la API según el producto
+  
     const API_URL = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
 
+  
+    // Fetch para obtener los datos del producto principal
+   
     fetch(API_URL)
         .then(res => {
-            if (!res.ok) {
-                throw new Error(`Error HTTP: ${res.status}`);
-            }
+            if (!res.ok) throw new Error(`Error HTTP: ${res.status}`);
             return res.json();
         })
         .then(product => {
             console.log("Datos del producto:", product);
+
+            //  Actualizar la vista del producto principal
             updateProductUI(product);
+
+            // Mostrar productos relacionados
+            RelatedProducts(product.relatedProducts || []);
         })
         .catch(error => {
             console.error("Error al cargar el producto:", error);
             showError(`Error al cargar el producto: ${error.message}`);
         });
 
+  
+    // Función para actualizar la vista del producto
+  
     function updateProductUI(product) {
         try {
-            // Actualizar información básica
             document.getElementById("product-name").textContent = product.name || 'Sin nombre';
             document.getElementById("product-cost").textContent = product.cost || '0';
             document.getElementById("product-currency").textContent = product.currency || 'USD';
@@ -43,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Actualizar imágenes del carrusel
             updateCarousel(product.images || []);
-            
+
             // Ocultar loading y mostrar contenido
             document.getElementById('loading').style.display = 'none';
             document.getElementById('product-container').style.display = 'block';
@@ -53,22 +66,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Función para actualizar el carrusel de imágenes
+  
     function updateCarousel(images) {
         const carouselInner = document.querySelector("#productCarousel .carousel-inner");
         const thumbnailsContainer = document.getElementById("thumbnails-container");
-        
+
         // Limpiar carrusel y miniaturas
         carouselInner.innerHTML = '';
         thumbnailsContainer.innerHTML = '';
 
         if (images.length === 0) {
-            // Si no hay imágenes, mostrar una imagen por defecto
             const defaultImage = 'img/no-image.jpg';
             carouselInner.innerHTML = `
                 <div class="carousel-item active">
                     <img src="${defaultImage}" class="d-block w-100" alt="Imagen no disponible">
                 </div>`;
-            
             thumbnailsContainer.innerHTML = `
                 <div class="thumbnail-item active" data-bs-target="#productCarousel" data-bs-slide-to="0" aria-current="true">
                     <img src="${defaultImage}" alt="Miniatura" class="img-fluid">
@@ -76,27 +89,135 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Actualizar carrusel con las imágenes del producto
         images.forEach((img, index) => {
             const isActive = index === 0 ? 'active' : '';
-            const carouselItem = `
+            carouselInner.innerHTML += `
                 <div class="carousel-item ${isActive}">
                     <img src="${img}" class="d-block w-100" alt="Imagen ${index + 1} del producto">
                 </div>`;
-            carouselInner.innerHTML += carouselItem;
-
-            const thumbnailItem = `
+            thumbnailsContainer.innerHTML += `
                 <div class="thumbnail-item ${isActive}" data-bs-target="#productCarousel" data-bs-slide-to="${index}" ${isActive ? 'aria-current="true"' : ''}>
                     <img src="${img}" alt="Miniatura ${index + 1}" class="img-fluid">
                 </div>`;
-            thumbnailsContainer.innerHTML += thumbnailItem;
         });
     }
 
+    // Función para mostrar errores
+ 
     function showError(message) {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('error-message').style.display = 'block';
         document.getElementById('error-text').textContent = message;
         document.getElementById('product-container').style.display = 'none';
     }
+
+  
+    // Mostrar/ocultar formulario de comentario
+    
+    document.getElementById("add-comment").addEventListener("click", function () {
+        const form = document.getElementById("calificacion-form");
+        form.style.display = (form.style.display === "none" || form.style.display === "") ? "block" : "none";
+    });
+
+});
+
+// Función para mostrar productos relacionados
+
+function RelatedProducts(relatedProducts) {
+    const relProd = document.getElementById("related-products");
+    relProd.innerHTML = '';
+
+    if (relatedProducts.length === 0) {
+        relProd.innerHTML = '<p>No hay productos relacionados.</p>';
+        return;
+    }
+
+    // Iterar sobre cada producto relacionado y traer sus datos completos
+    
+    relatedProducts.forEach(rp => {
+        const url = `https://japceibal.github.io/emercado-api/products/${rp.id}.json`;
+        fetch(url)
+            .then(res => res.json())
+            .then(prodData => {
+                const card = document.createElement("div");
+                card.className = "col-12 col-sm-6 col-md-4 col-lg-3";
+                card.innerHTML = `
+                    <div class="card h-100 related-card" style="cursor:pointer">
+                        <img src="${prodData.images[0]}" class="card-img-top" alt="${rp.name}" style="height:150px;object-fit:cover;">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">${rp.name}</h6>
+                        </div>
+                    </div>
+                `;
+                // Hacer la card clickeable para ir al detalle del producto
+
+                card.addEventListener("click", () => {
+                    localStorage.setItem("selectedProductId", rp.id);
+                    window.location.href = "product-info.html";
+                });
+
+                relProd.appendChild(card);
+            })
+            .catch(err => console.error("Error cargando relacionado:", err));
+    });
+}
+
+
+// calificación y comentarios
+
+let calificacion = 0;
+
+// Selección de estrellas
+document.querySelectorAll('#estrellas .fa').forEach(star => {
+    star.addEventListener('click', () => {
+        calificacion = parseInt(star.dataset.value);
+
+        // Resetear todas las estrellas
+        document.querySelectorAll('#estrellas .fa').forEach(s => s.classList.remove('checked'));
+
+        // Marcar hasta la seleccionada
+        for (let i = 0; i < calificacion; i++) {
+            document.querySelectorAll('#estrellas .fa')[i].classList.add('checked');
+        }
+    });
+});
+
+// Enviar comentario
+document.getElementById('btnEnviar').addEventListener('click', () => {
+    const comentarioTexto = document.getElementById('comentario').value.trim();
+
+    if (calificacion === 0 || comentarioTexto === "") {
+        alert("Por favor selecciona una calificación y escribe un comentario.");
+        return;
+    }
+
+    const nuevoComentario = document.createElement('div');
+    nuevoComentario.classList.add('card', 'mb-3');
+    nuevoComentario.innerHTML = `
+        <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+                <div class="user-avatar bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">T</div>
+                <div>
+                    <h6 class="mb-0">Tú</h6>
+                    <div class="text-warning">
+                        ${'<i class="fas fa-star"></i>'.repeat(calificacion)}
+                        ${'<i class="far fa-star"></i>'.repeat(5 - calificacion)}
+                    </div>
+                </div>
+                <small class="text-muted ms-auto">Ahora</small>
+            </div>
+            <p class="card-text mt-2">${comentarioTexto}</p>
+        </div>
+    `;
+
+    document.getElementById('comments-container').appendChild(nuevoComentario);
+
+    // Resetear formulario
+   
+    document.getElementById('comentario').value = "";
+    document.querySelectorAll('#estrellas .fa').forEach(s => s.classList.remove('checked'));
+    calificacion = 0;
+
+    // Ocultar mensaje "sin comentarios"
+    document.getElementById('no-comments').style.display = "none";
 });
