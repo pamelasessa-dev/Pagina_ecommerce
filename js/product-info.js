@@ -132,38 +132,104 @@ function RelatedProducts(relatedProducts) {
         return;
     }
 
-    // Iterar sobre cada producto relacionado y traer sus datos completos
     
+        // Iterar sobre cada producto relacionado
     relatedProducts.forEach(rp => {
-        const url = `https://japceibal.github.io/emercado-api/products/${rp.id}.json`;
-        fetch(url)
-            .then(res => res.json())
-            .then(prodData => {
-                const card = document.createElement("div");
-                card.className = "col-12 col-sm-6 col-md-4 col-lg-3";
-                card.innerHTML = `
-                    <div class="card h-100 related-card" style="cursor:pointer">
-                        <img src="${prodData.images[0]}" class="card-img-top" alt="${rp.name}" style="height:150px;object-fit:cover;">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">${rp.name}</h6>
-                        </div>
-                    </div>
-                `;
-                // Hacer la card clickeable para ir al detalle del producto
+        const card = document.createElement("div");
+        card.className = "col-12 col-sm-6 col-md-4 col-lg-3";
+        card.innerHTML = `
+            <div class="card h-100 related-card" style="cursor:pointer">
+                <img src="${rp.image}" class="card-img-top" alt="${rp.name}" style="height:150px;object-fit:cover;">
+                <div class="card-body text-center">
+                    <h6 class="card-title">${rp.name}</h6>
+                </div>
+            </div>
+        `;
 
-                card.addEventListener("click", () => {
-                    localStorage.setItem("selectedProductId", rp.id);
-                    window.location.href = "product-info.html";
-                });
+        // Hacer clic en el producto relacionado para ir a su detalle
+        card.addEventListener("click", () => {
+            localStorage.setItem("selectedProductId", rp.id);
+            window.location.href = "product-info.html";
+        });
 
-                relProd.appendChild(card);
-            })
-            .catch(err => console.error("Error cargando relacionado:", err));
+        // Agregar la card al contenedor
+        relProd.appendChild(card);
     });
 }
+document.addEventListener("DOMContentLoaded", function () {
+  const productId = localStorage.getItem("selectedProductId");
 
+  if (!productId) {
+    showError("No se seleccionó ningún producto.");
+    setTimeout(() => window.location.href = "index.html", 2000);
+    return;
+  }
 
-// calificación y comentarios
+  
+  //  Traer lista de comentarios
+ 
+  const selectedProductId = localStorage.getItem("selectedProductId");
+  const API_URL = `https://japceibal.github.io/emercado-api/products_comments/${selectedProductId}.json`;
+
+// fetch 
+
+fetch(API_URL)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('La respuesta no fue exitosa');
+    }
+    return response.json();
+  }) 
+
+  .then(comments => {
+    console.log(comments);
+
+    const container = document.getElementById("comments-container"); 
+    container.innerHTML = ""; 
+    
+    //mensaje si no hay comentarios
+    if (comments.length === 0) {
+      document.getElementById("no-comments").style.display = "block";
+      return;
+    }
+
+    // forEach 
+    comments.forEach(c => {
+      const card = document.createElement("div");
+      card.className = "card mb-3";
+      card.innerHTML = `
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-2">
+            <div class="user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                 style="width: 40px; height: 40px;">
+              ${c.user.charAt(0).toUpperCase()}
+            </div>
+            <div>
+              <h6 class="mb-0">${c.user}</h6>
+              <div class="text-warning">${renderStars(c.score)}</div>
+            </div>
+            <small class="text-muted ms-auto">${c.dateTime}</small>
+          </div>
+          <p class="card-text mt-2">${c.description}</p>
+        </div>
+      `;     
+      container.appendChild(card);
+    });
+  })
+  .catch(error => console.error('Error:', error));
+
+// Función de estrellas 
+function renderStars(score) {
+  let stars = '';
+  for (let i = 1; i <= 5; i++) {
+    stars += i <= score
+      ? '<i class="fas fa-star text-warning"></i>'
+      : '<i class="far fa-star text-warning"></i>';
+  }
+  return stars;
+}
+
+})
 
 let calificacion = 0;
 
@@ -220,4 +286,6 @@ document.getElementById('btnEnviar').addEventListener('click', () => {
 
     // Ocultar mensaje "sin comentarios"
     document.getElementById('no-comments').style.display = "none";
+    
 });
+
