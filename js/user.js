@@ -22,3 +22,29 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.replace("login.html"); 
     }
   });
+
+// Mostrar imagen de perfil en el navbar si existe
+function mostrarImagenPerfil() {
+    const imagenPerfilGuardada = localStorage.getItem("profileImage");
+    const contenedorImagenPerfil = document.getElementById("imagenPerfilNav");
+    
+    if (imagenPerfilGuardada && contenedorImagenPerfil) {
+        contenedorImagenPerfil.src = imagenPerfilGuardada;
+        contenedorImagenPerfil.style.display = "inline-block";
+    }
+}
+
+// Llamar a la función cuando se cargue la página
+document.addEventListener("DOMContentLoaded", mostrarImagenPerfil);
+
+  // Cerrar sesión al hacer clic en el botón "Cerrar sesión"
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      sessionStorage.clear();
+      localStorage.removeItem("profileImage"); // opcional, para limpiar la imagen guardada
+      window.location.replace("login.html");
+    });
+  }
+});
