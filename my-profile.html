@@ -50,19 +50,36 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-          </li>
+          <li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="nombreDeUsuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuario</a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nombreDeUsuario">
+    <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+    <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar sesión</a></li>
+  </ul>
+</li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+  <div class="container text-center my-4">
+    <h3>Mi perfil</h3>
+    <div class="mt-3">
+      <img id="profileImage" src="img/default-profile.png" alt="Imagen de perfil" 
+           style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc;">
     </div>
+    <div class="mt-3">
+      <input type="file" id="imageInput" accept="image/*">
+    </div>
+  </div>
+</main>
+ 
+<main> 
   </main>
+  
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
