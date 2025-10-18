@@ -111,13 +111,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('product-container').style.display = 'none';
     }
 
-  
-    // Mostrar/ocultar formulario de comentario
-    
-    document.getElementById("add-comment").addEventListener("click", function () {
-        const form = document.getElementById("calificacion-form");
-        form.style.display = (form.style.display === "none" || form.style.display === "") ? "block" : "none";
-    });
 
 });
 
@@ -156,6 +149,7 @@ function RelatedProducts(relatedProducts) {
         relProd.appendChild(card);
     });
 }
+
 document.addEventListener("DOMContentLoaded", function () {
   const productId = localStorage.getItem("selectedProductId");
 
@@ -165,35 +159,37 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  const API_URL = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
+
+  // Trae los comentarios de la API
   
-  //  Traer lista de comentarios
- 
-  const selectedProductId = localStorage.getItem("selectedProductId");
-  const API_URL = `https://japceibal.github.io/emercado-api/products_comments/${selectedProductId}.json`;
+  fetch(API_URL)
+    .then(response => {
+      if (!response.ok) throw new Error('La respuesta no fue exitosa');
+      return response.json();
+    })
+    .then(apiComments => {
+      
+        // Carga los comentarios guardados en localStorage
+      const savedComments = JSON.parse(localStorage.getItem(`comments_${productId}`)) || [];
+      const allComments = [...apiComments, ...savedComments];
 
-// fetch 
+      renderComments(allComments);
+    })
+    .catch(error => console.error('Error al cargar comentarios:', error));
 
-fetch(API_URL)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('La respuesta no fue exitosa');
-    }
-    return response.json();
-  }) 
+  // Función para mostrar los comentarios en pantalla
+  function renderComments(comments) {
+    const container = document.getElementById("comments-container");
+    container.innerHTML = "";
 
-  .then(comments => {
-    console.log(comments);
-
-    const container = document.getElementById("comments-container"); 
-    container.innerHTML = ""; 
-    
-    //mensaje si no hay comentarios
     if (comments.length === 0) {
       document.getElementById("no-comments").style.display = "block";
       return;
     }
 
-    // forEach 
+    document.getElementById("no-comments").style.display = "none";
+
     comments.forEach(c => {
       const card = document.createElement("div");
       card.className = "card mb-3";
@@ -212,80 +208,85 @@ fetch(API_URL)
           </div>
           <p class="card-text mt-2">${c.description}</p>
         </div>
-      `;     
+      `;
       container.appendChild(card);
     });
-  })
-  .catch(error => console.error('Error:', error));
-
-// Función de estrellas 
-function renderStars(score) {
-  let stars = '';
-  for (let i = 1; i <= 5; i++) {
-    stars += i <= score
-      ? '<i class="fas fa-star text-warning"></i>'
-      : '<i class="far fa-star text-warning"></i>';
   }
-  return stars;
-}
 
-})
+  // Función para generar las estrellas
+  function renderStars(score) {
+    let stars = '';
+    for (let i = 1; i <= 5; i++) {
+      stars += i <= score
+        ? '<i class="fas fa-star text-warning"></i>'
+        : '<i class="far fa-star text-warning"></i>';
+    }
+    return stars;
+  }
 
-let calificacion = 0;
+  // NUEVO: Guardar comentarios en localStorage
 
-// Selección de estrellas
-document.querySelectorAll('#estrellas .fa').forEach(star => {
+  let calificacion = 0;
+
+  // Selección de estrellas
+  document.querySelectorAll('#estrellas .fa').forEach(star => {
     star.addEventListener('click', () => {
-        calificacion = parseInt(star.dataset.value);
-
-        // Resetear todas las estrellas
-        document.querySelectorAll('#estrellas .fa').forEach(s => s.classList.remove('checked'));
-
-        // Marcar hasta la seleccionada
-        for (let i = 0; i < calificacion; i++) {
-            document.querySelectorAll('#estrellas .fa')[i].classList.add('checked');
-        }
+      calificacion = parseInt(star.dataset.value);
+      document.querySelectorAll('#estrellas .fa').forEach(s => s.classList.remove('checked'));
+      for (let i = 0; i < calificacion; i++) {
+        document.querySelectorAll('#estrellas .fa')[i].classList.add('checked');
+      }
     });
-});
+  });
 
-// Enviar comentario
-document.getElementById('btnEnviar').addEventListener('click', () => {
+  // Enviar comentario y guardarlo en localStorage
+  document.getElementById('btnEnviar').addEventListener('click', () => {
     const comentarioTexto = document.getElementById('comentario').value.trim();
 
     if (calificacion === 0 || comentarioTexto === "") {
-        alert("Por favor selecciona una calificación y escribe un comentario.");
-        return;
+      alert("Por favor selecciona una calificación y escribe un comentario.");
+      return;
     }
 
-    const nuevoComentario = document.createElement('div');
-    nuevoComentario.classList.add('card', 'mb-3');
-    nuevoComentario.innerHTML = `
-        <div class="card-body">
-            <div class="d-flex align-items-center mb-2">
-                <div class="user-avatar bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">T</div>
-                <div>
-                    <h6 class="mb-0">Tú</h6>
-                    <div class="text-warning">
-                        ${'<i class="fas fa-star"></i>'.repeat(calificacion)}
-                        ${'<i class="far fa-star"></i>'.repeat(5 - calificacion)}
-                    </div>
-                </div>
-                <small class="text-muted ms-auto">Ahora</small>
-            </div>
-            <p class="card-text mt-2">${comentarioTexto}</p>
-        </div>
-    `;
+    const nuevoComentario = {
+      user: "Tú",
+      description: comentarioTexto,
+      score: calificacion,
+      dateTime: new Date().toLocaleString()
+    };
 
-    document.getElementById('comments-container').appendChild(nuevoComentario);
+    // Mostrarlo en pantalla
+    const container = document.getElementById("comments-container");
+    const card = document.createElement('div');
+    card.classList.add('card', 'mb-3');
+    card.innerHTML = `
+      <div class="card-body">
+          <div class="d-flex align-items-center mb-2">
+              <div class="user-avatar bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">T</div>
+              <div>
+                  <h6 class="mb-0">Tú</h6>
+                  <div class="text-warning">
+                      ${'<i class="fas fa-star"></i>'.repeat(calificacion)}
+                      ${'<i class="far fa-star"></i>'.repeat(5 - calificacion)}
+                  </div>
+              </div>
+              <small class="text-muted ms-auto">Ahora</small>
+          </div>
+          <p class="card-text mt-2">${comentarioTexto}</p>
+      </div>
+    `;
+    container.appendChild(card);
+
+    // Guardar en localStorage
+    const savedComments = JSON.parse(localStorage.getItem(`comments_${productId}`)) || [];
+    savedComments.push(nuevoComentario);
+    localStorage.setItem(`comments_${productId}`, JSON.stringify(savedComments));
 
     // Resetear formulario
-   
     document.getElementById('comentario').value = "";
     document.querySelectorAll('#estrellas .fa').forEach(s => s.classList.remove('checked'));
     calificacion = 0;
 
-    // Ocultar mensaje "sin comentarios"
     document.getElementById('no-comments').style.display = "none";
-    
+  });
 });
-

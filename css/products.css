@@ -100,18 +100,29 @@ main h2 {
 
 /* --- Responsive tablet (max-width: 768px) --- */
 @media (max-width: 768px) {
-  .productos-grid {
-    grid-template-columns: repeat(auto-fill, minmax(11.25rem, 1fr));
-    gap: 1.25rem;
-    padding: 0.9375rem 0.625rem;
+  #barra-filtros .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
   }
-  .product-card {
-    padding: 0.625rem;
+
+  #barra-filtros .col-md-4,
+  #barra-filtros .col-md-2 {
+    width: 100%;
   }
-  .product-card img {
-    max-height: 7.5rem;
+
+  #barra-filtros .d-flex {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  #barra-filtros button {
+    flex: 1 1 100px;
+    min-width: 100px;
   }
 }
+
 
 /* --- Responsive móvil (max-width: 320px) --- */
 @media (max-width: 320px) {
