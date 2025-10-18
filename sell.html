@@ -15,7 +15,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-     <label class="switch">
+   <label class="switch">
     <input type="checkbox" id="theme-toggle">
     <span class="slider round"></span>
      </label>
@@ -27,17 +27,26 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="sell.html">Vender</a>
+            <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <a id="nombreDeUsuario" class="nav-link" href="#">Usuario</a>
-          </li>
+        <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img id="imagenPerfilNav" src="" alt="Imagen de perfil" style="width: 30px; height: 30px; border-radius: 50%; display: none; margin-right: 8px;">
+        <span id="nombreDeUsuario">Usuario</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar Sesión</a></li>
+    </ul>
+</li>  
+        </li>
         </ul>
       </div>
     </div>
