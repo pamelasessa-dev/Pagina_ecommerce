@@ -1,97 +1,215 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+<head> 
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>eMercado - Mi Perfil</title>
+ <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/theme-my-profile.css">
-  <link rel="stylesheet" href="#">
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
+ <style>
+   body {
+background-color: #f8f9fa;
+color: #333;
+font-family: 'Raleway', sans-serif;
+}
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
+.navbar {
+background-color: #111;
+padding: 0.5rem 0;
+ }
+
+ .navbar-brand img {
+height: 40px;
+}
+
+ .navbar-nav .nav-link {
+color: #fff !important;
+ font-weight: 500;
+ margin: 0 1rem;
+}
+
+ .container-main {
+ background-color: #fff;
+color: #333;
+border-radius: 10px;
+padding: 2rem;
+margin-top: 2rem;
+ box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+ .profile-pic {
+width: 120px;
+height: 120px;
+border-radius: 50%;
+ border: 4px solid #ff4d4d;
+object-fit: cover;
+ margin: 0 auto 1.5rem;
+ display: block;
+}
+
+.change-photo-btn {
+background-color: #4d94ff;
+color: white;
+ border: none;
+padding: 0.3rem 0.8rem;
+border-radius: 5px;
+font-size: 0.85rem;
+margin-left: 1rem;
+ }
+
+ .form-group {
+ display: flex;
+ align-items: center;
+margin-bottom: 1rem;
+}
+
+ .form-control {
+ flex-grow: 1;
+background-color: #f5f5f5;
+ border: 1px solid #ddd;
+border-radius: 5px;
+padding: 0.75rem;
+font-size: 1rem;
+text-align: center;
+}
+
+ .modify-btn {
+background-color: #4d94ff;
+ color: white;
+ border: none;
+ padding: 0.5rem 0.8rem;
+ border-radius: 5px;
+ margin-left: 0.5rem;
+ font-size: 0.85rem;
+}
+
+.save-btn {
+background-color: #ffc107;
+color: #333;
+border: none;
+padding: 0.75rem 2rem;
+ border-radius: 5px;
+font-weight: bold;
+ font-size: 1rem;
+ margin-top: 1.5rem;
+ display: block;
+ width: 100%;
+ max-width: 200px;
+ text-align: center;
+margin-left: auto;
+margin-right: auto;
+}
+
+ footer {
+ background-color: #111;
+color: #aaa;
+ padding: 1.5rem 0;
+margin-top: 3rem;
+ font-size: 0.9rem;
+ }
+
+ footer .footer-column {
+ display: flex;
+flex-direction: column;
+ gap: 0.5rem;
+}
+
+ footer a {
+color: #ddd;
+ text-decoration: none;
+ }
+
+ footer a:hover {
+ text-decoration: underline;
+ }
+ </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-     <label class="switch">
-    <input type="checkbox" id="theme-toggle">
-    <span class="slider round"></span>
-     </label>
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="nombreDeUsuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuario</a>
-  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nombreDeUsuario">
-    <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-    <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar sesión</a></li>
-  </ul>
-</li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <main>
-  <div class="container text-center my-4">
-    <h3>Mi perfil</h3>
-    <div class="mt-3">
-      <img id="profileImage" src="img/default-profile.png" alt="Imagen de perfil" 
-           style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc;">
-    </div>
-    <div class="mt-3">
-      <input type="file" id="imageInput" accept="image/*">
-    </div>
+ <nav class="navbar navbar-expand-lg navbar-dark">
+ <div class="container">
+ <a class="navbar-brand" href="index.html">
+ <img src="https://via.placeholder.com/120x30?text=e-mercado" alt="e-Mercado">
+</a>
+ <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+ aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+ <span class="navbar-toggler-icon"></span>
+ </button>
+ <div class="collapse navbar-collapse" id="navbarNav">
+ <ul class="navbar-nav w-100 justify-content-between">
+ <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+ <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
+ <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
+ <li class="nav-item"><a id="nombreDeUsuario" class="nav-link" href="my-profile.html">Usuario</a></li>
+ <li class="nav-item"><a class="nav-link" href="cart.html">Carrito</a></li>
+ </ul>
+</div>
+ </div>
+</nav>
+
+ <main>
+ <div class="container">
+ <div class="container-main p-4">
+ <h2 class="text-center mb-4">Mi Perfil</h2>
+
+ <div class="text-center mb-4">
+ <img src="https://via.placeholder.com/120x120?text=Foto+Perfil" alt="Foto de perfil" class="profile-pic" id="profile-pic">
+ <input type="file" id="photo-upload" accept="image/jpeg, image/png" style="display: none;">
+ <button class="change-photo-btn" id="change-photo-btn">Cambiar foto</button>
   </div>
-</main>
- 
-<main> 
-  </main>
-  
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/my-profile.js"></script>
-  <script src="js/theme.js"></script>
+
+<div class="form-group">
+ <input type="text" class="form-control" value="Nombre" readonly>
+ <button class="modify-btn">Modificar</button> </div>
+
+ <div class="form-group">
+ <input type="text" class="form-control" value="Apellido" readonly>
+ <button class="modify-btn">Modificar</button>
+ </div>
+
+ <div class="form-group">
+ <input type="email" class="form-control" value="email" readonly>
+<button class="modify-btn">Modificar</button>
+</div>
+
+_ <div class="form-group">
+ <input type="tel" class="form-control" value="Telefono" readonly>
+ <button class="modify-btn">Modificar</button>
+ </div>
+
+ <button class="save-btn">Guardar</button>
+section:  </div>
+</div>
+ </main>
+
+<footer class="text-muted">
+ <div class="container">
+<div class="row">
+ <div class="col-md-4 footer-column">
+ <strong>e-Mercado</strong>
+ <p>Tu tienda en línea de confianza</p>
+</div>
+ <div class="col-md-4 footer-column">
+ <strong>Contacto</strong>
+<p>contacto@emercado.com</p>
+ <p>+123 456 7890</p>
+ </div>
+ <div class="col-md-4 footer-column">
+ <strong>Enlaces</strong>
+ <a href="index.html">Inicio</a>
+ <a href="categories.html">Categorías</a>
+ </div>
+ </div>
+<hr style="border-top: 1px solid #444; margin: 1rem 0;">
+ <p class="text-center mt-2">
+ Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jóvenes a Programar</a>
+ </p>
+ </div>
+ </footer>
+
+ <script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/my-profile.js"></script>
 </body>
 
 </html>

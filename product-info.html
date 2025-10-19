@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -172,44 +172,52 @@
                 </div>
             </div>
             
-<!-- Comments Section -->
-<div class="row justify-content-center">
-  <div class="col-12">
-    <section id="comments-section" class="mt-5 pt-4 border-top">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="mb-0">Calificaciones y opiniones</h3>
-        </button>
-      </div>
-
-      <!-- Comentarios cargados -->
-      <div id="comments-container">
+            <!-- Comments Section -->
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <section id="comments-section" class="mt-5 pt-4 border-top">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="mb-0">Calificaciones y opiniones</h3>
+                            <button id="add-comment" class="btn btn-outline-primary">
+                                <div id="comment-list-container"></div>
+                                <i class="fas fa-pen me-2"></i>Escribir opinión
+                            </button>
+                        </div>
+                        
+                        <div id="comments-container">
+                            <!-- Comment Example -->
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                            U
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">Usuario123</h6>
+                                            <div class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <small class="text-muted ms-auto">Hace 1 semana</small>
+                                    </div>
+                                    <p class="card-text mt-2">Excelente auto, muy buen consumo y cómodo para la ciudad. Lo recomiendo.</p>
+                                </div>
+                            </div>
+                            <!-- No Comments Message (Hidden when there are comments) -->
+                            <div id="no-comments" class="text-center py-4 text-muted" style="display: none;">
+                                <i class="far fa-comments fa-3x mb-3"></i>
+                                <p class="mb-0">Sé el primero en opinar sobre este producto</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
-
-        <!-- Mensaje si no hay comentarios -->
-        <div id="no-comments" class="text-center py-4 text-muted" style="display: none;">
-          <i class="far fa-comments fa-3x mb-3"></i>
-          <p class="mb-0">Sé el primero en opinar sobre este producto</p>
-        </div>
-      </div>
-
-      <!-- Formulario de calificación -->
-      <div id="calificacion-form" class="mt-4">
-        <h5>Califica este producto</h5>
-        <div id="estrellas" class="mb-2">
-          <span class="fa fa-star" data-value="1"></span>
-          <span class="fa fa-star" data-value="2"></span>
-          <span class="fa fa-star" data-value="3"></span>
-          <span class="fa fa-star" data-value="4"></span>
-          <span class="fa fa-star" data-value="5"></span>
-        </div>
-        <textarea id="comentario" class="form-control mb-2" placeholder="Dejanos tu comentario..."></textarea>
-        <button id="btnEnviar" class="btn btn-primary">Enviar</button>
-      </div>
-    </section>
-  </div>
-</div>
-</div>
-</main>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-dark text-white mt-5 py-4">

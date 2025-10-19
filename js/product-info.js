@@ -110,183 +110,49 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('error-text').textContent = message;
         document.getElementById('product-container').style.display = 'none';
     }
-
-
 });
 
-// Función para mostrar productos relacionados
+// parte 2 entrega 4
 
-function RelatedProducts(relatedProducts) {
-    const relProd = document.getElementById("related-products");
-    relProd.innerHTML = '';
+const selectedProductId = localStorage.getItem("selectedProductId");
+const API_URL = `https://japceibal.github.io/emercado-api/products_comments/${selectedProductId}.json`;
 
-    if (relatedProducts.length === 0) {
-        relProd.innerHTML = '<p>No hay productos relacionados.</p>';
-        return;
-    }
 
-    
-        // Iterar sobre cada producto relacionado
-    relatedProducts.forEach(rp => {
-        const card = document.createElement("div");
-        card.className = "col-12 col-sm-6 col-md-4 col-lg-3";
-        card.innerHTML = `
-            <div class="card h-100 related-card" style="cursor:pointer">
-                <img src="${rp.image}" class="card-img-top" alt="${rp.name}" style="height:150px;object-fit:cover;">
-                <div class="card-body text-center">
-                    <h6 class="card-title">${rp.name}</h6>
-                </div>
-            </div>
-        `;
-
-        // Hacer clic en el producto relacionado para ir a su detalle
-        card.addEventListener("click", () => {
-            localStorage.setItem("selectedProductId", rp.id);
-            window.location.href = "product-info.html";
-        });
-
-        // Agregar la card al contenedor
-        relProd.appendChild(card);
-    });
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  const productId = localStorage.getItem("selectedProductId");
-
-  if (!productId) {
-    showError("No se seleccionó ningún producto.");
-    setTimeout(() => window.location.href = "index.html", 2000);
-    return;
-  }
-
-  const API_URL = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
-
-  // Trae los comentarios de la API
-  
-  fetch(API_URL)
+// PASO 2: EJECUTAR LA ACCIÓN (FETCH) CON ESAS VARIABLES
+fetch(API_URL)
     .then(response => {
-      if (!response.ok) throw new Error('La respuesta no fue exitosa');
-      return response.json();
+        if (!response.ok) {
+            throw new Error('La respuesta no fue exitosa');
+        }
+        return response.json();
     })
-    .then(apiComments => {
-      
-        // Carga los comentarios guardados en localStorage
-      const savedComments = JSON.parse(localStorage.getItem(`comments_${productId}`)) || [];
-      const allComments = [...apiComments, ...savedComments];
+    .then(data => {
+        // PASO 3: TRABAJAR CON LOS DATOS RECIBIDOS
+        console.log(data);
+        const  commentscontainer = document.getElementById("comment-list-container"); 
 
-      renderComments(allComments);
+        for (const comentario of data) {
+            const estrellasHTML = getStarHTML(comentario.score);
+
+            commentscontainer.innerHTML = `
+                <div class="list-group-item">
+                    <p class="mb-1"><strong>${comentario.user}</strong> - <small>${comentario.dateTime}</small></p>
+                    <div>${estrellasHTML}</div>
+                    <p class="mb-1">${comentario.description}</p>
+                </div>
+            `;
+        }
     })
-    .catch(error => console.error('Error al cargar comentarios:', error));
+    .catch(error => console.error('Error:', error));
 
-  // Función para mostrar los comentarios en pantalla
-  function renderComments(comments) {
-    const container = document.getElementById("comments-container");
-    container.innerHTML = "";
-
-    if (comments.length === 0) {
-      document.getElementById("no-comments").style.display = "block";
-      return;
-    }
-
-    document.getElementById("no-comments").style.display = "none";
-
-    comments.forEach(c => {
-      const card = document.createElement("div");
-      card.className = "card mb-3";
-      card.innerHTML = `
-        <div class="card-body">
-          <div class="d-flex align-items-center mb-2">
-            <div class="user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                 style="width: 40px; height: 40px;">
-              ${c.user.charAt(0).toUpperCase()}
-            </div>
-            <div>
-              <h6 class="mb-0">${c.user}</h6>
-              <div class="text-warning">${renderStars(c.score)}</div>
-            </div>
-            <small class="text-muted ms-auto">${c.dateTime}</small>
-          </div>
-          <p class="card-text mt-2">${c.description}</p>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  // Función para generar las estrellas
-  function renderStars(score) {
-    let stars = '';
+function getStarHTML(score) {
+    let estrellas = '';
     for (let i = 1; i <= 5; i++) {
-      stars += i <= score
-        ? '<i class="fas fa-star text-warning"></i>'
-        : '<i class="far fa-star text-warning"></i>';
+        if (i <= score) {
+            estrellas += `<span class="fa fa-star checked"></span>`;
+        } else {
+            estrellas += `<span class="fa fa-star"></span>`;
+        }
     }
-    return stars;
-  }
-
-  // NUEVO: Guardar comentarios en localStorage
-
-  let calificacion = 0;
-
-  // Selección de estrellas
-  document.querySelectorAll('#estrellas .fa').forEach(star => {
-    star.addEventListener('click', () => {
-      calificacion = parseInt(star.dataset.value);
-      document.querySelectorAll('#estrellas .fa').forEach(s => s.classList.remove('checked'));
-      for (let i = 0; i < calificacion; i++) {
-        document.querySelectorAll('#estrellas .fa')[i].classList.add('checked');
-      }
-    });
-  });
-
-  // Enviar comentario y guardarlo en localStorage
-  document.getElementById('btnEnviar').addEventListener('click', () => {
-    const comentarioTexto = document.getElementById('comentario').value.trim();
-
-    if (calificacion === 0 || comentarioTexto === "") {
-      alert("Por favor selecciona una calificación y escribe un comentario.");
-      return;
-    }
-
-    const nuevoComentario = {
-      user: "Tú",
-      description: comentarioTexto,
-      score: calificacion,
-      dateTime: new Date().toLocaleString()
-    };
-
-    // Mostrarlo en pantalla
-    const container = document.getElementById("comments-container");
-    const card = document.createElement('div');
-    card.classList.add('card', 'mb-3');
-    card.innerHTML = `
-      <div class="card-body">
-          <div class="d-flex align-items-center mb-2">
-              <div class="user-avatar bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">T</div>
-              <div>
-                  <h6 class="mb-0">Tú</h6>
-                  <div class="text-warning">
-                      ${'<i class="fas fa-star"></i>'.repeat(calificacion)}
-                      ${'<i class="far fa-star"></i>'.repeat(5 - calificacion)}
-                  </div>
-              </div>
-              <small class="text-muted ms-auto">Ahora</small>
-          </div>
-          <p class="card-text mt-2">${comentarioTexto}</p>
-      </div>
-    `;
-    container.appendChild(card);
-
-    // Guardar en localStorage
-    const savedComments = JSON.parse(localStorage.getItem(`comments_${productId}`)) || [];
-    savedComments.push(nuevoComentario);
-    localStorage.setItem(`comments_${productId}`, JSON.stringify(savedComments));
-
-    // Resetear formulario
-    document.getElementById('comentario').value = "";
-    document.querySelectorAll('#estrellas .fa').forEach(s => s.classList.remove('checked'));
-    calificacion = 0;
-
-    document.getElementById('no-comments').style.display = "none";
-  });
-});
+    return estrellas;
+}
