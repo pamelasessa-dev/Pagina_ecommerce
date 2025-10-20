@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -10,15 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/product-info.css">
-    <link rel="stylesheet" href="css/theme-productinfo.css">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <label class="switch">
-    <input type="checkbox" id="theme-toggle">
-    <span class="slider round"></span>
-     </label>
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,21 +29,14 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="sell.html">Vender</a>
-                   </li>
-          <li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="nombreDeUsuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuario</a>
-  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nombreDeUsuario">
-    <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-    <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar sesión</a></li>
-  </ul>
-</li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+                    </li>
+                    <li class="nav-item">
+                        <a id="nombreDeUsuario" class="nav-link" href="#">Usuario</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <!-- Main Content -->
     <main class="container mt-4">
@@ -172,52 +160,44 @@
                 </div>
             </div>
             
-            <!-- Comments Section -->
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <section id="comments-section" class="mt-5 pt-4 border-top">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h3 class="mb-0">Calificaciones y opiniones</h3>
-                            <button id="add-comment" class="btn btn-outline-primary">
-                                <div id="comment-list-container"></div>
-                                <i class="fas fa-pen me-2"></i>Escribir opinión
-                            </button>
-                        </div>
-                        
-                        <div id="comments-container">
-                            <!-- Comment Example -->
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <div class="user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                            U
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-0">Usuario123</h6>
-                                            <div class="text-warning">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <small class="text-muted ms-auto">Hace 1 semana</small>
-                                    </div>
-                                    <p class="card-text mt-2">Excelente auto, muy buen consumo y cómodo para la ciudad. Lo recomiendo.</p>
-                                </div>
-                            </div>
-                            <!-- No Comments Message (Hidden when there are comments) -->
-                            <div id="no-comments" class="text-center py-4 text-muted" style="display: none;">
-                                <i class="far fa-comments fa-3x mb-3"></i>
-                                <p class="mb-0">Sé el primero en opinar sobre este producto</p>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
+<!-- Comments Section -->
+<div class="row justify-content-center">
+  <div class="col-12">
+    <section id="comments-section" class="mt-5 pt-4 border-top">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0">Calificaciones y opiniones</h3>
+        </button>
+      </div>
+
+      <!-- Comentarios cargados -->
+      <div id="comments-container">
         </div>
-    </main>
+
+        <!-- Mensaje si no hay comentarios -->
+        <div id="no-comments" class="text-center py-4 text-muted" style="display: none;">
+          <i class="far fa-comments fa-3x mb-3"></i>
+          <p class="mb-0">Sé el primero en opinar sobre este producto</p>
+        </div>
+      </div>
+
+      <!-- Formulario de calificación -->
+      <div id="calificacion-form" class="mt-4">
+        <h5>Califica este producto</h5>
+        <div id="estrellas" class="mb-2">
+          <span class="fa fa-star" data-value="1"></span>
+          <span class="fa fa-star" data-value="2"></span>
+          <span class="fa fa-star" data-value="3"></span>
+          <span class="fa fa-star" data-value="4"></span>
+          <span class="fa fa-star" data-value="5"></span>
+        </div>
+        <textarea id="comentario" class="form-control mb-2" placeholder="Escribe tu opinión..."></textarea>
+        <button id="btnEnviar" class="btn btn-primary">Enviar</button>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+</main>
 
     <!-- Footer -->
     <footer class="bg-dark text-white mt-5 py-4">
@@ -269,6 +249,5 @@
     <script src="js/init.js"></script>
     <script src="js/user.js"></script>
     <script src="js/product-info.js"></script>
-    <script src="js/theme.js"></script>
 </body>
 </html>
