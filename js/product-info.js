@@ -156,6 +156,7 @@ function RelatedProducts(relatedProducts) {
         relProd.appendChild(card);
     });
 }
+
 document.addEventListener("DOMContentLoaded", function () {
   const productId = localStorage.getItem("selectedProductId");
 
@@ -288,4 +289,74 @@ document.getElementById('btnEnviar').addEventListener('click', () => {
     document.getElementById('no-comments').style.display = "none";
     
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnComprar = document.getElementById("buy-now");
+  const btnAgregar = document.getElementById("add-to-cart");
+
+  // Función para obtener los datos del producto
+  function obtenerProducto() {
+    const nombre = document.getElementById("product-name").textContent.trim();
+    const costo = parseFloat(document.getElementById("product-cost").textContent) || 0;
+    const moneda = document.getElementById("product-currency").textContent.trim() || "USD";
+
+    // Obtiene la imagen activa del carrusel
+    const imagenEl = document.querySelector("#productCarousel .carousel-item.active img");
+    const imagen = imagenEl ? imagenEl.src : "img/no-image.jpg";
+
+    return {
+      nombre,
+      costo,
+      moneda,
+      cantidad: 1,
+      imagen,
+      subtotal: costo
+    };
+  }
+
+  // Función para guardar el producto en el localStorage (maneja varios productos)
+  function agregarProductoAlCarrito(producto) {
+    // Recupera el carrito existente o crea uno nuevo
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    // Verificar si el producto ya existe (por nombre)
+    const existente = carrito.find(item => item.nombre === producto.nombre);
+
+    if (existente) {
+      // Si ya está en el carrito, incrementa la cantidad
+      existente.cantidad += 1;
+      existente.subtotal = existente.cantidad * existente.costo;
+    } else {
+      // Si no está, lo agrega
+      carrito.push(producto);
+    }
+
+    // Guarda el carrito actualizado
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }
+
+  // Botón "Comprar ahora": guarda y redirige al carrito
+  if (btnComprar) {
+    btnComprar.addEventListener("click", () => {
+      const producto = obtenerProducto();
+      agregarProductoAlCarrito(producto);
+      window.location.href = "cart.html"; // Redirige al carrito
+    });
+  }
+
+  // Botón "Agregar al carrito": guarda pero NO redirige
+  if (btnAgregar) {
+    btnAgregar.addEventListener("click", () => {
+      const producto = obtenerProducto();
+      agregarProductoAlCarrito(producto);
+
+      // Mostrar un alert al usuario
+      alert("Producto agregado al carrito");
+    });
+
+}
+
+});
+  
+
 
