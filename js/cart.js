@@ -1,11 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const contenedor = document.getElementById("contenedorCarrito");
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
+  
   if (carrito.length === 0) {
-    contenedor.innerHTML = `<p class="text-muted">Tu carrito está vacío.</p>`;
-    return;
-  }
+    contenedor.innerHTML = `
+    <p class="text-muted">Tu carrito está vacío.</p>
+    <p class="text-muted"> Descubrí <a href="categories.html" class="text-primary">nuevos productos</a>.</p>
+    `;
+  return; 
+}
+
 
   contenedor.innerHTML = carrito.map((producto, index) => `
     <div class="card mb-3">
