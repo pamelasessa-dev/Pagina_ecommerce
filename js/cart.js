@@ -43,11 +43,7 @@ function actualizarSubtotal(index, carrito) {
     // Guardar el carrito actualizado y recalcular totales
     localStorage.setItem("carrito", JSON.stringify(carrito));
     renderizarResumenCostos(carrito);
-    
-    // Actualizar el badge en la navegación
-    if (typeof updateCartBadge === 'function') {
-        updateCartBadge(); 
-    }
+   
 }
 function renderizarResumenCostos(carrito) {
     const contenedor = document.getElementById(RESUMEN_COSTOS);
