@@ -333,6 +333,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Guarda el carrito actualizado
     localStorage.setItem("carrito", JSON.stringify(carrito));
+  
+    if (typeof updateCartBadge === 'function') {
+            updateCartBadge();
+    }
   }
 
   // Botón "Comprar ahora": guarda y redirige al carrito
