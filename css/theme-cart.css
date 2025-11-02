@@ -29,7 +29,7 @@ body.dark-mode .availability {
 }
 
 body.dark-mode .mb-4, .mb-0, h5 {
-   color: rgb(18, 18, 18) !important
+   color: rgb(18, 18, 18) 
 }
 
 #theme-toggle {
@@ -105,3 +105,20 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+body.dark-mode #contenedorCarrito {
+  background-color: #615c5c; 
+  color: #080808;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode #resumenCostos,
+body.dark-mode #envioYPago {
+  background-color: #2a2b2d;
+  color: #f1f1f1;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
