@@ -65,6 +65,5 @@ function updateCartBadge() {
 
 // Llama a la función al cargar el DOM en todas las páginas para asegurar que el badge esté actualizado
 document.addEventListener("DOMContentLoaded", () => {
-    // ... Otras inicializaciones de init.js ...
     updateCartBadge();
 });
