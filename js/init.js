@@ -67,3 +67,23 @@ function updateCartBadge() {
 document.addEventListener("DOMContentLoaded", () => {
     updateCartBadge();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const nombreNav = document.getElementById("nombreDeUsuario");
+  const imagenNav = document.getElementById("imagenPerfilNav");
+
+  const saved = localStorage.getItem("userProfile");
+  if (saved) {
+    const data = JSON.parse(saved);
+    if (data.firstName && data.lastName) {
+      nombreNav.textContent = `${data.firstName} ${data.lastName}`;
+    } else if (data.firstName) {
+      nombreNav.textContent = data.firstName;
+    }
+
+    if (data.photo) {
+      imagenNav.src = data.photo;
+      imagenNav.style.display = "inline-block";
+    }
+  }
+});

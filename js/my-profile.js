@@ -1,38 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Elementos del DOM
+document.addEventListener('DOMContentLoaded', function() { 
     const profilePic = document.getElementById('profile-pic');
     const changePhotoBtn = document.getElementById('change-photo-btn');
     const fileInput = document.getElementById('photo-upload');
     const saveBtn = document.querySelector('.save-btn');
-    const inputs = document.querySelectorAll('.form-group input'); // Los 4 campos
+    const inputs = document.querySelectorAll('.form-group input');
     const modifyButtons = document.querySelectorAll('.modify-btn');
+
+    // navbar
+    const nombreNav = document.getElementById("nombreDeUsuario");
+    const imagenNav = document.getElementById("imagenPerfilNav");
 
     // Cargar datos guardados al iniciar
     loadProfileData();
 
-    // Evento para abrir el selector de archivos
-    changePhotoBtn.addEventListener('click', () => {
-        fileInput.click();
-    });
+    changePhotoBtn.addEventListener('click', () => fileInput.click());
 
-    // Manejar la selección de archivo
     fileInput.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
             const reader = new FileReader();
             reader.onload = function(event) {
-                profilePic.src = event.target.result; // Previsualización inmediata
+                profilePic.src = event.target.result;
             };
             reader.readAsDataURL(file);
         } else if (file) {
-            alert('Por favor, selecciona una imagen en formato JPG o PNG.');
+            alert('Por favor, selecciona una imagen JPG o PNG.');
         }
     });
 
-    // Activar/desactivar edición en campos
     modifyButtons.forEach((button, index) => {
         button.addEventListener('click', () => {
-            const input = inputs[index]; // El input correspondiente
+            const input = inputs[index];
             if (input.readOnly) {
                 input.readOnly = false;
                 input.focus();
@@ -44,9 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Guardar todos los datos en localStorage
     saveBtn.addEventListener('click', () => {
-        // Crear objeto con los datos actuales
         const data = {
             firstName: inputs[0].value.trim(),
             lastName: inputs[1].value.trim(),
@@ -55,16 +51,25 @@ document.addEventListener('DOMContentLoaded', function() {
             photo: profilePic.src
         };
 
-        // Guardar en localStorage
         localStorage.setItem('userProfile', JSON.stringify(data));
         alert('¡Perfil guardado correctamente!');
 
-        // Volver todos los campos a solo lectura y botones a "Modificar"
+        // Volver a modo solo lectura
         inputs.forEach(input => input.readOnly = true);
         modifyButtons.forEach(btn => btn.textContent = 'Modificar');
+
+        // Actualizar datos del navbar inmediatamente
+        if (data.firstName && data.lastName) {
+            nombreNav.textContent = `${data.firstName} ${data.lastName}`;
+        } else if (data.firstName) {
+            nombreNav.textContent = data.firstName;
+        }
+        if (data.photo) {
+            imagenNav.src = data.photo;
+            imagenNav.style.display = "inline-block";
+        }
     });
 
-    // Función para cargar los datos desde localStorage
     function loadProfileData() {
         const saved = localStorage.getItem('userProfile');
         if (saved) {
