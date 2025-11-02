@@ -411,9 +411,4 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCartBadge(); 
     }
 
-    const imagenPerfilNav = document.getElementById('imagenPerfilNav');
-    if (imagenPerfilNav) {  
-        imagenPerfilNav.style.display = 'inline-block';
-    }
-
 });
