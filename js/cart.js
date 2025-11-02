@@ -277,6 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Renderizar productos y costos
     if (carrito.length === 0) {
         contenedor.innerHTML = `
+        <img src ="img/carrito.png" alt="Carrito de compras" style="width:50px; height:50px;"> 
             <p class="text-muted">Tu carrito está vacío.</p>
             <p class="text-muted"> Descubrí <a href="categories.html" class="text-primary">nuevos productos</a>.</p>
         `;
