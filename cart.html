@@ -9,12 +9,11 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/theme-cart.css">
-   <link rel="stylesheet" href="#">
-</head>
+ </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <label class="switch">
+   <label class="switch">
     <input type="checkbox" id="theme-toggle">
     <span class="slider round"></span>
      </label>
@@ -26,7 +25,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -34,8 +33,10 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li>
-         <li class="nav-item dropdown">
+          <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                          🛒 Mi carrito <span id="cart-count" class="badge bg-warning text-dark">0</span> </a>
+  <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <img id="imagenPerfilNav" src="" alt="Imagen de perfil" style="width: 30px; height: 30px; border-radius: 50%; display: none; margin-right: 8px;">
         <span id="nombreDeUsuario">Usuario</span>
@@ -45,17 +46,73 @@
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar Sesión</a></li>
     </ul>
-</li>
-        </ul>
-      </div>
-    </div>
+  </li>
+     </div>
   </nav>
   <main>
-  <div class="container my-4">
-    <h2>Mi carrito</h2>
-    <div id="contenedorCarrito" class="mt-4"></div>
+    <div class="container my-4">
+      <h2 class="text-white">Mi carrito</h2>
+      <div id="contenedorCarrito" class="mt-4">  </div>
+      
+      <div id="resumenCostos" class="container mt-5"></div> 
+
+      <div id="envioYPago" class="container mt-5"></div>
+    </div>
+  </main>
+
+  <div class="modal fade" id="formaPagoModal" tabindex="-1" aria-labelledby="formaPagoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formaPagoModalLabel">Seleccionar forma de pago</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pagoMetodo" id="credito">
+                    <label class="form-check-label" for="credito">
+                        Tarjeta de Crédito
+                    </label>
+                </div>
+                <div id="campos-tarjeta" class="p-3 border mt-2 mb-3" disabled>
+                    <div class="mb-3">
+                        <label for="numTarjeta" class="form-label">Número de tarjeta</label>
+                        <input type="text" class="form-control" id="numTarjeta" required disabled>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="vencimiento" class="form-label">Vencimiento (MM/AA)</label>
+                            <input type="text" class="form-control" id="vencimiento" required disabled>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cvv" required disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pagoMetodo" id="transferencia">
+                    <label class="form-check-label" for="transferencia">
+                        Transferencia Bancaria
+                    </label>
+                </div>
+                <div id="campos-transferencia" class="p-3 border mt-2" disabled>
+                    <div class="mb-3">
+                        <label for="numCuenta" class="form-label">Número de cuenta</label>
+                        <input type="text" class="form-control" id="numCuenta" required disabled>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="modalGuardarBtn">Guardar</button>
+            </div>
+        </div>
+    </div>
   </div>
-</main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
