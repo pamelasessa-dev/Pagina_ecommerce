@@ -39,3 +39,32 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+function updateCartBadge() {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    
+    // Suma las cantidades de todos los productos
+    let totalItems = 0;
+    carrito.forEach(producto => {
+        totalItems += parseInt(producto.cantidad) || 0;
+    });
+
+    const cartBadge = document.getElementById("cart-count");
+
+    if (cartBadge) {
+        cartBadge.textContent = totalItems;
+
+        // Mostrar u ocultar el badge
+        if (totalItems > 0) {
+            cartBadge.classList.remove("d-none");
+        } else {
+            cartBadge.classList.add("d-none");
+        }
+    }
+}
+
+// Llama a la función al cargar el DOM en todas las páginas para asegurar que el badge esté actualizado
+document.addEventListener("DOMContentLoaded", () => {
+    // ... Otras inicializaciones de init.js ...
+    updateCartBadge();
+});
