@@ -1,11 +1,11 @@
 body.dark-mode #product-container{
   background-color: #232424;
-  color: #333;
+  color:lch(59.4% 0.01 296.81);
 }
 
 body.dark-mode {
   background-color: #333;
-  color: #a19696;
+  color: lch(59.4% 0.01 296.81);
 }
 
 body.dark-mode #category-name {
@@ -29,7 +29,7 @@ body.dark-mode .availability {
 }
 
 body.dark-mode .mb-4, .mb-0, h5 {
-   color: white !important
+   color: rgb(18, 18, 18) !important
 }
 
 #theme-toggle {
