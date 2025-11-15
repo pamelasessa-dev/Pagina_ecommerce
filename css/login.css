@@ -91,7 +91,7 @@ a {
 /* Smartphone pequeño */
 @media (max-width: 568px) {
   .login-container {
-    top: 60%; /* antes estaba 50%, lo bajamos */
+    top: 60%; /* antes estaba 50% */
     transform: translate(-50%, -50%);
     max-width: 90%;
     padding: 1.5rem 0.5rem;
