@@ -36,12 +36,20 @@
                         <a class="nav-link" href="sell.html">Vender</a>
                     </li>
                     <li class="nav-item">
-                        <a id="nombreDeUsuario" class="nav-link" href="#">Usuario</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="cart.html">
                             🛒 Mi carrito <span id="cart-count" class="badge bg-warning text-dark">0</span>
                         </a>
+                    </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img id="imagenPerfilNav" src="" alt="Imagen de perfil" style="width: 30px; height: 30px; border-radius: 50%; display: none; margin-right: 8px;">
+                            <span id="nombreDeUsuario">Usuario</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar Sesión</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
