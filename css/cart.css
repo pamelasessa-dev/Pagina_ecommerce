@@ -16,7 +16,7 @@ body {
 
 #resumenCostos,
 #envioYPago {
-  background-color: #f5f5f5;          /* gris muy claro */
+  background-color: #f5f5f5;
   color: #222;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
@@ -81,3 +81,62 @@ body {
   background-color: #e65100;
 }
 
+/* ====== RESPONSIVE ====== */
+
+/* ----- MOBILE (0–480px) ----- */
+@media (max-width: 480px) {
+
+  #contenedorCarrito table thead {
+    display: none;
+  }
+
+  #contenedorCarrito table tr {
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #787878; 
+  }
+
+  #contenedorCarrito table td {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+    font-size: 12px;
+  }
+
+  #contenedorCarrito table td img {
+    width: 100px;
+    height: auto;
+  }
+
+  #contenedorCarrito .cantidad-input {
+    width: 70px;
+  }
+
+  #contenedorCarrito td button {
+    align-self: center;
+  }
+}
+
+/* ----- TABLET (481–768px) ----- */
+@media (min-width: 481px) and (max-width: 768px) {
+  #contenedorCarrito table td {
+    font-size: 14px;
+  }
+
+  #contenedorCarrito table td img {
+    width: 90px;
+  }
+}
+
+/* ----- 1024px (laptops) ----- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #contenedorCarrito table td {
+    font-size: 15px;
+  }
+
+  #contenedorCarrito table td img {
+    width: 100px;
+  }
