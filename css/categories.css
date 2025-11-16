@@ -1,0 +1,108 @@
+
+/* MOBILE CHICO – 320px a 480px */
+
+@media (max-width: 480px) {
+
+  /* Evita que la página se desplace horizontalmente en móvil */
+  html, body {
+    overflow-x: hidden !important;
+  }
+
+  /* ---- BOTONES DE ORDENAMIENTO ---- */
+  /* Los botones se apilan en columna para que no se desborden */
+  .btn-group.btn-group-toggle {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espacio entre botones */
+  }
+
+  /* Botones ocupan todo el ancho y permiten salto de línea */
+  .btn-group.btn-group-toggle .btn {
+    width: 100%;
+    white-space: normal !important; /* Evita que el texto se corte */
+    font-size: 0.85rem; /* Texto más pequeño para móvil */
+  }
+
+  /* ---- FILTROS DE RANGO ---- */
+
+  /* Quitamos padding para que todo encaje mejor en pantalla chica */
+  .col-lg-6.offset-lg-6,
+  .col-md-12 {
+    padding: 0 !important;
+  }
+
+  /* La fila de filtros pasa a ser una columna */
+  .col-lg-6.offset-lg-6 .row.g-2 {
+    display: flex;
+    flex-direction: column !important;
+    gap: 6px; /* Espacio entre inputs */
+  }
+
+  /* Centra el texto "Cant." en pantallas pequeñas */
+  .col-lg-6.offset-lg-6 .col p {
+    text-align: center !important;
+    margin-bottom: 4px;
+  }
+
+  /* Inputs MIN y MAX al 100% del ancho */
+  .col-lg-6.offset-lg-6 input.form-control {
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  /* Ajuste de los contenedores de los botones filtrar/limpiar */
+  .col-3.p-0 {
+    width: 100% !important;
+  }
+
+  /* Grupo de botones ocupa todo el ancho en móvil */
+  .btn-group[role="group"] {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Botones filtrar / limpiar al 48% para que entren 2 en la misma fila */
+  .btn-group[role="group"] .btn {
+    width: 48%;
+    font-size: 0.85rem;
+  }
+
+  /* El botón "Limpiar" más pequeño, estilo link */
+  .btn-group[role="group"] .btn-link {
+    font-size: 0.75rem;
+    text-align: right;
+  }
+}
+
+
+/* TABLET – 481px a 768px */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+  /* Texto un poco más grande porque hay más espacio */
+  .btn-group.btn-group-toggle .btn {
+    font-size: 0.9rem;
+  }
+
+  /* Inputs acorde al tamaño de tablet */
+  .col-lg-6.offset-lg-6 input.form-control {
+    font-size: 0.9rem;
+  }
+}
+
+
+/*  LAPTOP – 769px a 1024px */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  /* Tamaños más cómodos para laptop pequeña */
+  .btn-group.btn-group-toggle .btn {
+    font-size: 1rem;
+  }
+
+  .col-lg-6.offset-lg-6 input.form-control {
+    font-size: 1rem;
+  }
+}

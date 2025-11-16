@@ -1,94 +1,88 @@
-/* Product Info Page Styles */
-/* Add your custom styles here */
-
-/* Estilos generales */
+/* --- Estilos generales --- */
 body {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; 
     color: #333;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 }
 
-/* Estilos para el contenedor principal */
+/* --- Contenedor principal del producto --- */
 #product-container {
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
+    border-radius: 8px; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+    margin: 2rem auto 2rem auto; 
+    max-width: 1400px; 
 }
 
-/* Estilos para el carrusel principal */
+/* --- Carrusel principal --- */
 #productCarousel {
     border-radius: 8px;
-    overflow: hidden;
+    overflow: hidden; /* Evita que la imagen se salga */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
 #productCarousel .carousel-inner {
-    border-radius: 8px;
+    border-radius: 8px; 
 }
 
 #productCarousel .carousel-item img {
     width: 100%;
-    height: 400px;
-    object-fit: cover;
+    height: 400px; 
+    object-fit: cover; 
 }
 
-/* Estilos para las miniaturas */
+/* --- Miniaturas del producto --- */
 #thumbnails-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Por defecto vertical */
     gap: 10px;
     height: 100%;
     padding-right: 15px;
 }
 
 .thumbnail-item {
-    cursor: pointer;
-    border: 2px solid transparent;
+    cursor: pointer; /* Manito al pasar el mouse */
+    border: 2px solid transparent; 
     border-radius: 6px;
     overflow: hidden;
-    transition: all 0.3s ease;
-    opacity: 0.7;
+    transition: all 0.3s ease; 
+    opacity: 0.7; 
 }
 
 .thumbnail-item:hover,
 .thumbnail-item.active {
-    opacity: 1;
-    border-color: #ffc107;
+    opacity: 1; 
+    border-color: #ffc107; 
 }
 
 .thumbnail-item img {
     width: 100%;
     height: 80px;
-    object-fit: cover;
+    object-fit: cover; 
     border-radius: 4px;
 }
 
-/* Estilos para los controles del carrusel */
+/* --- Controles del carrusel --- */
 .carousel-control-prev,
 .carousel-control-next {
-    width: 8%;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
+    /* Se reduce a solo lo que funciona: tamaño y estilo */
     height: 40px;
     width: 40px;
     top: 50%;
     transform: translateY(-50%);
-    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.2); /* Fondo semi-transparente */
+    border-radius: 50%;
+    opacity: 0; /* Oculto por defecto */
     transition: opacity 0.3s ease;
 }
 
 #productCarousel:hover .carousel-control-prev,
 #productCarousel:hover .carousel-control-next {
-    opacity: 1;
+    opacity: 1; /* Visible al pasar el mouse */
 }
 
-/* Estilos para la información del producto */
+/* --- Información del producto --- */
 .product-info {
     max-width: 800px;
     margin: 0 auto;
@@ -111,7 +105,7 @@ body {
     min-width: 200px;
 }
 
-/* Estilos para los botones de acción */
+/* --- Botones de acción --- */
 .action-buttons {
     display: flex;
     justify-content: center;
@@ -153,7 +147,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para los detalles del producto */
+/* --- Detalles del producto --- */
 #product-details {
     margin-top: 2.5rem;
     padding-top: 2rem;
@@ -177,7 +171,7 @@ body {
     bottom: 0;
     width: 60px;
     height: 3px;
-    background-color: #ffc107;
+    background-color: #ffc107; /* Línea decorativa */
 }
 
 #product-specs {
@@ -186,7 +180,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     padding: 0;
-    list-style: none;
+    list-style: none; /* Quita viñetas */
 }
 
 #product-specs li {
@@ -205,9 +199,10 @@ body {
     width: 24px;
     text-align: center;
     margin-right: 10px;
-    color: #6c757d;
+    color: #6c757d; /* Gris para íconos */
 }
 
+/* --- Disponibilidad del producto --- */
 .availability {
     background-color: #f8f9fa;
     border-radius: 8px;
@@ -226,7 +221,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* Estilos para la sección de productos relacionados */
+/* --- Productos relacionados --- */
 #related-products-section {
     margin-top: 4rem;
 }
@@ -240,7 +235,7 @@ body {
     text-align: center;
 }
 
-/* Estilos para la sección de comentarios */
+/* --- Comentarios y calificaciones --- */
 #comments-section {
     margin-top: 4rem;
     border-top: 1px solid #eee;
@@ -254,84 +249,73 @@ body {
     text-align: center;
 }
 
+/* Estrellas de calificación */
 #estrellas .fa {
-  font-size: 24px;
-  cursor: pointer;
-  color: #bbbbbb;
-  border-color: orange;
+    font-size: 24px;
+    cursor: pointer;
+    color: #bbbbbb; /* Gris por defecto */
 }
 
 #estrellas .checked {
-  color: orange;
+    color: orange; /* Estrella seleccionada */
 }
+
+/* Botón enviar comentario */
 #btnEnviar {
     color: black;
     background-color: orange;
     border-color: white;
 }
 
-/* Estilos responsivos */
+/* Estilos Responsive */
 @media (max-width: 992px) {
-    #product-container {
-        padding: 1rem;
+    #product-container { 
+        padding: 1rem; 
     }
-    
-    #productCarousel .carousel-item img {
-        height: 350px;
+    #productCarousel .carousel-item img { 
+        height: 350px; 
     }
-    
-    .thumbnail-item {
-        height: 70px;
+    .thumbnail-item { 
+        height: 70px; 
     }
-    
-    #product-specs {
-        grid-template-columns: repeat(2, 1fr);
+    #product-specs { 
+        grid-template-columns: repeat(2, 1fr); 
     }
 }
 
 @media (max-width: 768px) {
-    #thumbnails-container {
-        flex-direction: row;
-        overflow-x: auto;
-        padding: 10px 0;
-        margin-bottom: 15px;
-    }
     
-    .thumbnail-item {
-        min-width: 80px;
+    #thumbnails-container { 
+        flex-direction: row; 
+        overflow-x: auto; 
+        padding: 10px 0; 
+        margin-bottom: 15px; 
     }
-    
-    #productCarousel .carousel-item img {
-        height: 300px;
+    .thumbnail-item { 
+        min-width: 80px; 
     }
-    
-    .product-info h2 {
-        font-size: 1.75rem;
+    #productCarousel .carousel-item img { 
+        height: 300px; 
     }
-    
-    .action-buttons {
-        flex-direction: column;
-        align-items: center;
+    .product-info h2 { 
+        font-size: 1.75rem; 
     }
-    
-    .btn-warning,
-    .btn-outline-warning {
-        width: 100%;
-        max-width: 300px;
+    .action-buttons { 
+        flex-direction: column; align-items: center; 
     }
-    
-    #product-specs {
-        grid-template-columns: 1fr;
+    .btn-warning, .btn-outline-warning { 
+        width: 100%; max-width: 300px; 
+    }
+    #product-specs { 
+        grid-template-columns: 1fr; 
     }
 }
 
 @media (max-width: 576px) {
-    #productCarousel .carousel-item img {
-        height: 250px;
+    #productCarousel .carousel-item img { 
+        height: 250px; 
     }
-    
-    .thumbnail-item {
-        height: 60px;
-        min-width: 70px;
+    .thumbnail-item { 
+        height: 60px; min-width: 70px; 
     }
 }

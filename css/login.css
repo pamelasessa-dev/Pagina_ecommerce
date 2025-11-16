@@ -25,7 +25,7 @@ body{
   max-width: 340px;
   margin: auto;               
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%); 
 
@@ -89,25 +89,11 @@ a {
 }
 
 /* Smartphone pequeño */
-
-@media(min-width: 320px) and(max-width: 568px){
-  .login-container{
-    max-width: 100%;
+@media (max-width: 568px) {
+  .login-container {
+    top: 60%; /* antes estaba 50% */
+    transform: translate(-50%, -50%);
+    max-width: 90%;
     padding: 1.5rem 0.5rem;
-  }
-  .wrapper{
-    gap:0.75rem;
-
-  }
-  .logo{
-      max-width: 100%;
-      padding-top: 2rem;
-}
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
   }
 }

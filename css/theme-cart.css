@@ -192,4 +192,3 @@ body.dark-mode #envioYPago .form-control:focus,
 body.dark-mode #envioYPago .form-select:focus {
   border-color: #ff6f00;
   box-shadow: 0 0 0 .2rem rgba(255, 111, 0, .25);
-}
