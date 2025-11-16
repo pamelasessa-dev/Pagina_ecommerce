@@ -137,3 +137,43 @@ body.dark-mode #envioYPago {
 #carrito{
   color: #000000;
 }
+
+
+/* Mejora de texto del carrito vacío en modo oscuro */
+
+
+body.dark-mode #contenedorCarrito,
+body.dark-mode #contenedorCarrito p,
+body.dark-mode #contenedorCarrito a,
+body.dark-mode #contenedorCarrito h2,
+body.dark-mode #contenedorCarrito h3 {
+  color: #ffffff !important;     /* Texto blanco visible */
+}
+
+
+/* Ajustar altura */
+main {
+  min-height: 60vh; /* Ajusta la altura mínima del contenido */
+}
+
+body.dark-mode footer {
+  color: #f1f1f1 !important;  /* texto claro */
+}
+
+body.dark-mode footer a {
+  color: #d4d4d4 !important;  /* enlaces */
+}
+
+body.dark-mode footer a:hover {
+  color: #ffffff !important;  /* enlaces al pasar el mouse */
+}
+
+body.dark-mode footer h5,
+body.dark-mode footer h4,
+body.dark-mode footer h3 {
+  color: #ffffff !important; /* títulos en footer */
+}
+
+body.dark-mode footer p{          /*párrafo del footer */
+   color: #f1f1f1 !important;
+}
