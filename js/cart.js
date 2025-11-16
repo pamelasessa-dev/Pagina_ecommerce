@@ -1,4 +1,4 @@
-// === CONSTANTES Y VARIABLES GLOBALES ===
+// CONSTANTES Y VARIABLES GLOBALES 
 
 const CONTENEDOR_PRODUCTOS = "contenedorCarrito";
 const RESUMEN_COSTOS = "resumenCostos";
@@ -16,11 +16,10 @@ let metodoPagoSeleccionado = null; // Variable global para rastrear el método d
 // TASA DE CONVERSIÓN: Añadida para manejar UYU
 const TASA_CONVERSION_UYU_USD = 40;
 
-// === FUNCIONES AUXILIARES ===
+// FUNCIONES AUXILIARES 
 
-/**
- * Función para actualizar el subtotal de un producto específico en tiempo real.
- */
+/* Función para actualizar el subtotal de un producto específico en tiempo real.*/
+
 function actualizarSubtotal(index, carrito) {
     const inputElement = document.querySelector(`.cantidad-input[data-index="${index}"]`);
     const subtotalElement = document.getElementById(`subtotal-${index}`);
@@ -142,11 +141,10 @@ function renderizarResumenCostos(carrito) {
     });
 }
 
-// === LÓGICA DE CHECKOUT Y VALIDACIÓN ===
+// LÓGICA DE CHECKOUT Y VALIDACIÓN 
 
-/**
- * Función para gestionar la interacción dentro del modal de pago.
- */
+/* Función para gestionar la interacción dentro del modal de pago.*/
+
 function handlePagoModal() {
     const radioTarjeta = document.getElementById('credito');
     const radioTransferencia = document.getElementById('transferencia');
@@ -256,7 +254,7 @@ function validarFormulario(form, carrito) {
         // Ocultar alerta después de 3 segundos y recargar
         setTimeout(() => {
             // location.reload(); 
-            // Podrías redirigir a un resumen, por ahora solo recargamos
+            // Por ahora solo recargamos
             document.getElementById('alert-success').style.display = 'none';
         }, 3000);
         
@@ -266,7 +264,7 @@ function validarFormulario(form, carrito) {
     return false;
 }
 
-// === FUNCIÓN PRINCIPAL ===
+// FUNCIÓN PRINCIPAL 
 
 document.addEventListener("DOMContentLoaded", () => {
     // Inicialización de datos
@@ -286,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return; 
     }
 
-    // --- Renderizado de Tabla de Productos ---
+    //  Renderizado de Tabla de Productos 
 
     const contenidoTabla = carrito.map((producto, index) => {
         const subtotalInicial = (producto.costo * producto.cantidad).toFixed(2);
@@ -310,6 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }).join("");
     
+    if (!contenedor) return
     contenedor.innerHTML = `
         <h3>Artículos a comprar</h3>
         <table class="table table-hover align-middle">
@@ -327,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </table>
     `;
 
-    // --- Renderizado de Costos y Formulario de Checkout ---
+    // Renderizado de Costos y Formulario de Checkout 
     
     renderizarResumenCostos(carrito);
 
@@ -394,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // --- LÓGICA DE VALIDACIÓN FINAL ---
+    // LÓGICA DE VALIDACIÓN FINAL -
     const checkoutForm = document.getElementById('checkout-form');
     if (checkoutForm) {
         checkoutForm.addEventListener('submit', function (event) {

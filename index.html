@@ -1,66 +1,115 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
+  <!-- Configuración de tipo de contenido -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <!-- Hace que el sitio sea responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <title>eMercado - Todo lo que busques está aquí</title>
 
+  <!-- Tipografía principal -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Estilos Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos principales -->
   <link href="css/styles.css" rel="stylesheet">
+
+  <!-- Estilos del tema (claro/oscuro) -->
   <link rel="stylesheet" href="css/theme-index.css">
 </head>
 
 <body>
+
+  <!-- Barra de navegación -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-   <label class="switch">
-    <input type="checkbox" id="theme-toggle">
-    <span class="slider round"></span>
-     </label>
+
+    <!-- Switch para cambiar tema -->
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider round"></span>
+    </label>
+
     <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+      <!-- Botón hamburguesa para menú responsive -->
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
+      <!-- Contenido del menú -->
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
+
+          <!-- Inicio -->
           <li class="nav-item">
             <a class="nav-link active" href="index.html">Inicio</a>
           </li>
+
+          <!-- Categorías -->
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
           </li>
+
+          <!-- Vender -->
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-      <li class="nav-item">
-                        <a class="nav-link" href="cart.html">
-                            🛒 Mi carrito <span id="cart-count" class="badge bg-warning text-dark">0</span>
-                        </a>
 
-    
-     <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <img id="imagenPerfilNav" src="" alt="Imagen de perfil" style="width: 30px; height: 30px; border-radius: 50%; display: none; margin-right: 8px;">
-        <span id="nombreDeUsuario">Usuario</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar Sesión</a></li>
-    </ul>
-</li>
-        </li>
+          <!-- Carrito -->
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">
+              🛒 Mi carrito
+              <span id="cart-count" class="badge bg-warning text-dark">0</span>
+            </a>
+          </li>
+
+          <!-- Menú de usuario con dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+
+              <!-- Imagen de perfil (se muestra solo si hay una cargada) -->
+              <img id="imagenPerfilNav" src="" alt="Imagen de perfil"
+                style="width: 30px; height: 30px; border-radius: 50%; display: none; margin-right: 8px;">
+
+              <!-- Nombre del usuario -->
+              <span id="nombreDeUsuario">Usuario</span>
+            </a>
+
+            <!-- Opciones del dropdown -->
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+
         </ul>
       </div>
     </div>
   </nav>
+
+  <!-- Contenido principal -->
   <main>
+
+    <!-- Sección destacada (vacía por defecto) -->
     <div class="jumbotron text-center"></div>
+
+    <!-- Sección de categorías -->
     <div class="album py-5 bg-light">
       <div class="container">
+
+        <!-- Fila 1 con 3 categorías -->
         <div class="row">
+
+          <!-- Categoría Autos -->
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm custom-card cursor-active" id="autos">
               <img class="bd-placeholder-img card-img-top" src="img/cars_index.jpg"
@@ -71,6 +120,8 @@
               </div>
             </div>
           </div>
+
+          <!-- Categoría Juguetes -->
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm custom-card cursor-active" id="juguetes">
               <img class="bd-placeholder-img card-img-top" src="img/toys_index.jpg"
@@ -81,6 +132,8 @@
               </div>
             </div>
           </div>
+
+          <!-- Categoría Muebles -->
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm custom-card cursor-active" id="muebles">
               <img class="bd-placeholder-img card-img-top" src="img/furniture_index.jpg"
@@ -91,26 +144,82 @@
               </div>
             </div>
           </div>
+
         </div>
+
+        <!-- Botón para ver más categorías -->
         <div class="row">
           <a class="btn btn-light btn-lg btn-block" href="categories.html">Y mucho más!</a>
         </div>
+
       </div>
     </div>
+
   </main>
-  <footer class="text-muted">
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white mt-5 py-4">
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Columna izquierda -->
+        <div class="col-md-6">
+          <h5>e-Mercado</h5>
+          <p>Tu tienda en línea de confianza</p>
+        </div>
+
+        <!-- Columna contacto -->
+        <div class="col-md-3">
+          <h5>Contacto</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-envelope me-2"></i> contacto@emercado.com</li>
+            <li><i class="fas fa-phone me-2"></i> +123 456 7890</li>
+          </ul>
+        </div>
+
+        <!-- Columna enlaces -->
+        <div class="col-md-3">
+          <h5>Enlaces</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="text-white">Inicio</a></li>
+            <li><a href="categories.html" class="text-white">Categorías</a></li>
+            <li><a href="sell.html" class="text-white">Vender</a></li>
+            <li class="nav-item"><a class="nav-link" href="cart.html">Carrito</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="my-4">
+
+      <!-- Derechos -->
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 e-Mercado. Todos los derechos reservados.</p>
+      </div>
+
+    </div>
+
     <div class="container">
       <p class="float-end">
-        <a href="#">Volver arriba</a>
+        <a href="#" class="text-white">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>
+        Este sitio forma parte de
+        <a href="https://jovenesaprogramar.edu.uy/" class="text-white" target="_blank">
+          Jóvenes a Programar
+        </a>
+      </p>
     </div>
   </footer>
+
+  <!-- Scripts -->
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/index.js"></script>
   <script src="js/init.js"></script>
   <script src="js/user.js"></script>
   <script src="js/theme.js"></script>
-  <script src ="js/cart.js"></script>
+  <script src="js/cart.js"></script>
+
 </body>
 </html>
