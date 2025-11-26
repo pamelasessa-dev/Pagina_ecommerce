@@ -6,8 +6,6 @@ const puerto = 3000; // Indico en qué puerto voy a escuchar
 
 const authRoutes = require('./routes/auth');
 
-app.use(express.json());
-
 app.use('/api', authRoutes);
 
 
