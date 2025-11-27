@@ -40,46 +40,5 @@ module.exports = {
             res.status(404).json({ message: "Producto no encontrado" });
         }
     },
-    // Crear producto
-
-    create: (req, res) => {
-        // Datos que envía el cliente (SIN ID)
-        const newProduct = req.body; 
-        // Creamos el producto usando el modelo (el modelo genera el ID)
-        const created = productsModel.create(newProduct); 
-        //Respuesta
-        res.status(201).json({
-            message: "Producto creado correctamente",
-            product: created
-         });
-    },
-
-    //Actualizar producto
-    update:(req,res) => {
-        const id = req.params.id;
-        const updatedData = req.body;
-
-        const updated = productsModel.update(id,updatedData);
-
-        if(!updated){
-            return res.status(404).json({
-                message: "Producto no encontrado" 
-            });
-        }
-        res.json(updated);
     
-    },
-    //Eliminar producto
-    remove: (req,res)=> {
-        const id = req.params.id;
-        const deleted = productsModel.delete(id);
-        if(!deleted){
-            return res.status(404).json({
-                message: "Producto no encontrado"
-            });
-        }
-        res.json({
-            message: "Producto eliminado correctamente"
-        });
-    }
 };
