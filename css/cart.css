@@ -1,0 +1,142 @@
+
+/* ----------  MODO CLARO – MISMA ESTRUCTURA, TONOS CLAROS  ---------- */
+
+body {
+  background-color: #fafafa;
+  color: #222;
+}
+
+#contenedorCarrito {
+  background-color: #ffffff;
+  color: #222;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, .08);
+}
+
+#resumenCostos,
+#envioYPago {
+  background-color: #f5f5f5;
+  color: #222;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+#resumenCostos .card,
+#envioYPago .card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+
+#resumenCostos .list-group-item {
+  background-color: #ffffff;
+  color: #222;
+  border-color: #e0e0e0;
+}
+
+#resumenCostos .list-group-item.bg-light {
+  background-color: #eeeeee !important;
+  color: #000;
+}
+
+#resumenCostos h3,
+#envioYPago h3 {
+  color: #000;
+  font-weight: 600;
+}
+
+#resumenCostos .form-check-label {
+  color: #444;
+}
+
+#envioYPago .form-control,
+#envioYPago .form-select {
+  background-color: #ffffff;
+  color: #222;
+  border: 1px solid #ccc;
+}
+
+#envioYPago .form-control:focus,
+#envioYPago .form-select:focus {
+  border-color: #ff6f00;
+  box-shadow: 0 0 0 .2rem rgba(255, 111, 0, .25);
+}
+
+#buy-now,
+#btn-finalizar-compra {
+  background-color: #ff6f00;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .25s;
+}
+
+#buy-now:hover,
+#btn-finalizar-compra:hover {
+  background-color: #e65100;
+}
+
+/* ====== RESPONSIVE ====== */
+
+/* ----- MOBILE (0–480px) ----- */
+@media (max-width: 480px) {
+
+  #contenedorCarrito table thead {
+    display: none;
+  }
+
+  #contenedorCarrito table tr {
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #787878; 
+  }
+
+  #contenedorCarrito table td {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+    font-size: 12px;
+  }
+
+  #contenedorCarrito table td img {
+    width: 100px;
+    height: auto;
+  }
+
+  #contenedorCarrito .cantidad-input {
+    width: 70px;
+  }
+
+  #contenedorCarrito td button {
+    align-self: center;
+  }
+}
+
+/* ----- TABLET (481–768px) ----- */
+@media (min-width: 481px) and (max-width: 768px) {
+  #contenedorCarrito table td {
+    font-size: 14px;
+  }
+
+  #contenedorCarrito table td img {
+    width: 90px;
+  }
+}
+
+/* ----- 1024px (laptops) ----- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #contenedorCarrito table td {
+    font-size: 15px;
+  }
+
+  #contenedorCarrito table td img {
+    width: 100px;
+  }
