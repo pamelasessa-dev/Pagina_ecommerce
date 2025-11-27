@@ -1,0 +1,196 @@
+/* ----------  DARK-MODE GLOBAL  ---------- */
+body.dark-mode {
+  background-color: #121212;        /* más negro que #333 */
+  color: #e0e0e0;                   /* gris claro legible */
+}
+
+/* ----------  CONTENEDORES DEL CARRITO  ---------- */
+body.dark-mode #contenedorCarrito {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 0 12px rgba(0,0,0,.35);
+}
+
+/*  NEGRO PURO para los costos  */
+body.dark-mode #resumenCostos,
+body.dark-mode #envioYPago {
+  background-color: #000000;        
+  color: #000;  
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border: 1px solid #222;          /* borde muy tenue */
+}
+
+/* ----------  TABLA / CARDS INTERNAS  ---------- */
+body.dark-mode .table-dark-cart,
+body.dark-mode .card {
+  background-color: #232323;
+  border-color: #333;
+}
+
+body.dark-mode .table-dark-cart thead th {
+  background-color: rgba(255,255,255,.05);
+  color: #aaa;
+}
+
+/* ----------  BOTONES  ---------- */
+body.dark-mode #buy-now,
+body.dark-mode #btn-finalizar-compra {
+  background-color: #ff6f00;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .25s;
+}
+body.dark-mode #buy-now:hover,
+body.dark-mode #btn-finalizar-compra:hover {
+  background-color: #e65100;
+}
+
+/* ----------  INPUTS  ---------- */
+body.dark-mode .cantidad-input,
+body.dark-mode .form-control {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+body.dark-mode .cantidad-input:focus,
+body.dark-mode .form-control:focus {
+  border-color: #ff6f00;
+  box-shadow: 0 0 0 .2rem rgba(255,111,0,.25);
+}
+
+/* ----------  TITULOS / TEXTOS  ---------- */
+body.dark-mode #category-name,
+body.dark-mode h3,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode .fw-bold {
+  color: #f5f5f5;
+}
+
+body.dark-mode .text-muted {
+  color: #a0a0a0 !important;
+}
+
+/* ----------  MODO OSCURO MÁS LEGIBLE  ---------- */
+body.dark-mode,
+body.dark-mode #contenedorCarrito,
+body.dark-mode #resumenCostos,
+body.dark-mode #envioYPago,
+body.dark-mode .card,
+body.dark-mode .table-dark-cart,
+body.dark-mode .list-group-item,
+body.dark-mode .form-label,
+body.dark-mode .form-control::placeholder,
+body.dark-mode h3,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode td,
+body.dark-mode th,
+body.dark-mode .fw-bold,
+body.dark-mode .text-muted {
+  color: #e8e8e8 !important;   /* gris muy claro */
+}
+
+/* ----------  SWITCH DEL TEMA  ---------- */
+#theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background-color: #e1dacc;
+  color: #222;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1050;
+}
+
+/* ----------  SWITCH CHECKBOX  ---------- */
+.switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #555;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px; width: 26px;
+  left: 4px; bottom: 4px;
+  background-color: #fff;
+  transition: .4s;
+}
+input:checked + .slider { background-color: #ff6f00; }
+input:checked + .slider:before { transform: translateX(26px); }
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+/* ----------  SECCIÓN COSTOS – PALETA GRISES OSCUROS  ---------- */
+
+/* contenedores principales */
+body.dark-mode #resumenCostos,
+body.dark-mode #envioYPago {
+  background-color: #1f1f1f;          /* gris oscuro medio */
+  border: 1px solid #333;             /* borde sutil */
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* tarjetitas internas (tipo envío, formulario) */
+body.dark-mode #resumenCostos .card,
+body.dark-mode #envioYPago .card {
+  background-color: #2a2a2a;          /* un tono más claro */
+  border: 1px solid #3a3a3a;
+}
+
+/* items de lista (subtotales, envío, total) */
+body.dark-mode #resumenCostos .list-group-item {
+  background-color: #252525;          /* entre #1f1f1f y #2a2a2a */
+  color: #e0e0e0;
+  border-color: #3a3a3a;
+}
+
+/* total destacado */
+body.dark-mode #resumenCostos .list-group-item.bg-light {
+  background-color: #303030 !important;  /* ligeramente más claro */
+  color: #ffffff;
+}
+
+/* títulos de sección */
+body.dark-mode #resumenCostos h3,
+body.dark-mode #envioYPago h3 {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* radios y labels */
+body.dark-mode #resumenCostos .form-check-label {
+  color: #d0d0d0;
+}
+
+/* inputs del formulario de envío */
+body.dark-mode #envioYPago .form-control,
+body.dark-mode #envioYPago .form-select {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+body.dark-mode #envioYPago .form-control:focus,
+body.dark-mode #envioYPago .form-select:focus {
+  border-color: #ff6f00;
+  box-shadow: 0 0 0 .2rem rgba(255, 111, 0, .25);
+}
+
