@@ -3,6 +3,10 @@ const express = require("express"); // Utilizo el framework
 const app = express(); // Instancia de express
 
 const puerto = 3000; // Indico en qué puerto voy a escuchar
+ 
+const cors = require("cors");  
+
+app.use(cors());
 
 const authRoutes = require('./routes/auth');
 
