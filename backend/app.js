@@ -9,9 +9,7 @@ const cors = require("cors");
 app.use(cors());
 
 const authRoutes = require('./routes/auth');
-
-app.use('/api', authRoutes);
-
+app.use('/auth', authRoutes);
 
 // Middleware para permitir JSON
 app.use(express.json());

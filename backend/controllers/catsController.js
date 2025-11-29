@@ -6,17 +6,17 @@ module.exports = {
         const cats = catsModel.getAll();
         res.json(cats);
     },
-
+    
     getById: (req, res) => {
-        const id = req.params.id;
+        const id = parseInt(req.params.id);
+        
         const cat = catsModel.getById(id);
-
-        if(!cat){
+        if (!cat) {
             return res.status(404).json({
                 message: "No se ha encontrado la categoría"
             });
+        
         }
         res.json(cat);
-
     }
 };

@@ -5,7 +5,4 @@ const productCommentsController = require("../controllers/productCommentsControl
 // Obtener comentarios del producto
 router.get("/:id/comments", productCommentsController.getComments);
 
-// Agregar un comentario al producto
-router.post("/:id/comments", productCommentsController.addComment);
-
 module.exports = router;
