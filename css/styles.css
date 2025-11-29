@@ -70,6 +70,7 @@ nav a {
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;
+
 }
 
 footer p {
@@ -188,3 +189,4 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+

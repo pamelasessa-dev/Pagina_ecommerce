@@ -2,104 +2,233 @@
 <html lang="es">
 
 <head>
+  <!-- Metadatos básicos -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <title>eMercado - Todo lo que busques está aquí</title>
 
+  <!-- Fuentes y estilos -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+
+
+  <!-- Estilos personalizados para la página de categorías -->
+  <link rel="stylesheet" href="css/categories.css">
+  <link rel="stylesheet" href="css/theme-categories.css">
 </head>
 
 <body>
+  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+
+    <!-- Botón para cambiar entre modo claro/oscuro -->
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider round"></span>
+    </label>
+
     <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      <!-- Botón hamburguesa para pantallas pequeñas -->
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
+      <!-- Items del menú -->
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
+
+          <!-- Inicio -->
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active" href="index.html">Inicio</a>
           </li>
+
+          <!-- Categorías -->
           <li class="nav-item">
-            <a class="nav-link active" href="categories.html">Categorías</a>
+            <a class="nav-link" href="categories.html">Categorías</a>
           </li>
+
+          <!-- Vender -->
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
+
+          <!-- Carrito -->
           <li class="nav-item">
+            <a class="nav-link" href="cart.html">
+              🛒 Mi carrito 
+              <span id="cart-count" class="badge bg-warning text-dark">0</span>
+            </a>
           </li>
+
+          <!-- Perfil del usuario con imagen + dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+
+              <!-- Imagen del perfil (se mostrará solo si existe) -->
+              <img id="imagenPerfilNav" src="" alt="Imagen de perfil"
+                style="width: 30px; height: 30px; border-radius: 50%; display: none; margin-right: 8px;">
+
+              <!-- Nombre del usuario -->
+              <span id="nombreDeUsuario">Usuario</span>
+            </a>
+
+            <!-- Opciones del usuario -->
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+
         </ul>
       </div>
     </div>
   </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="pb-5">
     <div class="text-center p-4">
       <h2>Categorías</h2>
       <p class="lead">Verás aquí todas las categorías del sitio.</p>
     </div>
+
     <div class="container">
+
+      <!-- Botones de ordenamiento -->
       <div class="row">
         <div class="col text-end">
           <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+
+            <!-- Orden ascendente -->
             <input type="radio" class="btn-check" name="options" id="sortAsc">
             <label class="btn btn-light" for="sortAsc">A-Z</label>
+
+            <!-- Orden descendente -->
             <input type="radio" class="btn-check" name="options" id="sortDesc">
             <label class="btn btn-light" for="sortDesc">Z-A</label>
+
+            <!-- Orden por cantidad -->
             <input type="radio" class="btn-check" name="options" id="sortByCount" checked>
-            <label class="btn btn-light" for="sortByCount"><i class="fas fa-sort-amount-down mr-1"></i></label>
+            <label class="btn btn-light" for="sortByCount">
+              <i class="fas fa-sort-amount-down mr-1"></i>
+            </label>
+
           </div>
         </div>
       </div>
+
+      <!-- Filtros por rango -->
       <div class="row">
-        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
-          <div class="row container p-0 m-0">
+        <div class="col-lg-6 offset-lg-6 col-md-12 mb-3">
+          <div class="row g-2">
             <div class="col">
               <p class="font-weight-normal text-end my-2">Cant.</p>
             </div>
+
+            <!-- Mínimo -->
             <div class="col">
               <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
             </div>
+
+            <!-- Máximo -->
             <div class="col">
               <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
             </div>
+
+            <!-- Botones de aplicar y limpiar -->
             <div class="col-3 p-0">
               <div class="btn-group" role="group">
                 <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
                 <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
               </div>
             </div>
+
           </div>
         </div>
       </div>
+
+      <!-- Contenedor donde se cargan las categorías -->
       <div class="row">
-        <div class="list-group" id="cat-list-container">
-        </div>
+        <div class="col-12 list-group" id="cat-list-container"></div>
       </div>
     </div>
+
   </main>
-  <footer class="text-muted">
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-white mt-5 py-4">
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Información general -->
+        <div class="col-md-6">
+          <h5>e-Mercado</h5>
+          <p>Tu tienda en línea de confianza</p>
+        </div>
+
+        <!-- Contacto -->
+        <div class="col-md-3">
+          <h5>Contacto</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-envelope me-2"></i> contacto@emercado.com</li>
+            <li><i class="fas fa-phone me-2"></i> +123 456 7890</li>
+          </ul>
+        </div>
+
+        <!-- Enlaces -->
+        <div class="col-md-3">
+          <h5>Enlaces</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="text-white">Inicio</a></li>
+            <li><a href="categories.html" class="text-white">Categorías</a></li>
+            <li><a href="sell.html" class="text-white">Vender</a></li>
+            <li class="nav-item"><a class="nav-link" href="cart.html">Carrito</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="my-4">
+
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 e-Mercado. Todos los derechos reservados.</p>
+      </div>
+
+    </div>
+
     <div class="container">
       <p class="float-end">
-        <a href="#">Volver arriba</a>
+        <a href="#" class="text-white">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>
+        Este sitio forma parte de 
+        <a href="https://jovenesaprogramar.edu.uy/" class="text-white" target="_blank">
+          Jóvenes a Programar
+        </a>
+      </p>
     </div>
   </footer>
+
+  <!-- Spinner de carga -->
   <div id="spinner-wrapper">
     <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div></div><div></div><div></div><div></div>
     </div>
   </div>
+
+  <!-- Scripts del proyecto -->
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/categories.js"></script>
+  <script src="js/user.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/cart.js"></script>
+
 </body>
 
 </html>

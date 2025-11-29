@@ -1,56 +1,109 @@
-const API_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"
+const catID = localStorage.getItem("catID") || "101";
+const API_URL = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 
-// Crear card HTML
+let products = []; // Todos los productos
+let productosVisibles = []; // con filtros y orden 
+
+// Product card 
 function crearCard(product) {
-    console.log("creando card")
     return `
-<div class="products-container">
-    <div class="product-card" id="product-card">
-        <img src="${product.image}" alt="Imagen del producto" class="card-img-top" id="img-product">
+    <div class="product-card" onclick="seleccionarProducto(${product.id})" style="cursor: pointer;">
+        <img src="${product.image}" alt="${product.name}" class="card-img-top">
         <div class="card-body">
-            <h5 class="card-title" id="product-title">${product.name}</h5>
-            <p class="card-text" id="product-description">${product.description}</p>
-            <p class="card-text" id="product-price">${product.cost} ${product.currency}</p>
-            <button class="btn" id="add-to-cart">Agregar al carrito</button>
+            <h5 class="card-title">${product.name}</h5>
+            <p class="card-text">${product.description}</p>
+            <p class="card-text">${product.cost} ${product.currency}</p>
+            <p class="card-text">${product.soldCount} vendidos</p>
+            <button class="btn btn-primary" onclick="event.stopPropagation(); seleccionarProducto(${product.id})">Agregar al carrito</button>
         </div>
-    </div>
-</div>`;
+    </div>`;
 }
-
-// Renderizar
-function renderizar(data) {
-    console.log("renderizando lista", data)
+// Renderizar lista
+function renderizar(lista) {
     const grid = document.querySelector('.productos-grid');
-    
-    if (!grid) {
-        console.error("no se encontró producto grid");
-        return;
-    }
-    
-    // data.products es el array de productos
-    grid.innerHTML = data.products.map(crearCard).join('');
+    if (!grid) return;
+    grid.innerHTML = lista.map(crearCard).join('');
+    productosVisibles = lista; // actualizar estado
 }
 
-// Fetch
+// Cargar productos de la API
 function cargarProductos() {
-    console.log("iniciando fetch")
     fetch(API_URL)
         .then(res => {
-            console.log("response", res)
-            if (!res.ok) {
-                throw new Error("Error al cargar");
-            }
+            if (!res.ok) throw new Error("Error al cargar productos");
             return res.json();
         })
         .then(data => {
-            console.log("json", data);
-            renderizar(data);
+            products = data.products;
+            renderizar(products);
         })
         .catch(error => {
             console.error("Error al cargar productos:", error);
         });
 }
 
-// Ejecutar cuando esté el DOM
-document.addEventListener('DOMContentLoaded', cargarProductos);
+// Filtrado, orden y buscador
+document.addEventListener('DOMContentLoaded', () => {
+    cargarProductos();
 
+    document.getElementById("btnFiltrar").addEventListener("click", () => {
+        const min = parseInt(document.getElementById("precioMinimo").value) || 0;
+        const max = parseInt(document.getElementById("precioMaximo").value) || Infinity;
+
+        const filtrados = products.filter(p => p.cost >= min && p.cost <= max);
+        renderizar(filtrados);
+    });
+
+    document.getElementById("btnLimpiar").addEventListener("click", () => {
+        document.getElementById("precioMinimo").value = "";
+        document.getElementById("precioMaximo").value = "";
+        renderizar(products);
+    });
+
+    document.getElementById("ordenAsc").addEventListener("click", () => {
+        const ordenados = [...productosVisibles].sort((a, b) => a.cost - b.cost);
+        renderizar(ordenados);
+    });
+
+    document.getElementById("ordenDesc").addEventListener("click", () => {
+        const ordenados = [...productosVisibles].sort((a, b) => b.cost - a.cost);
+        renderizar(ordenados);
+    });
+
+    document.getElementById("ordenRel").addEventListener("click", () => {
+        const ordenados = [...productosVisibles].sort((a, b) => b.soldCount - a.soldCount);
+        renderizar(ordenados);
+    });
+
+    document.getElementById("buscador").addEventListener("input", () => {
+        const texto = document.getElementById("buscador").value.toLowerCase();
+        const filtrados = products.filter(p =>
+            p.name.toLowerCase().includes(texto) ||
+            p.description.toLowerCase().includes(texto)
+        );
+        renderizar(filtrados);
+    });
+});
+// Seleccionar producto
+function seleccionarProducto(productId) {
+    try {
+        if (!productId) {
+            console.error('No se proporcionó un ID de producto válido');
+            return;
+        }
+        
+        // Guardar el ID del producto en localStorage
+        localStorage.setItem('selectedProductId', productId);
+        console.log('Producto seleccionado, ID:', productId);
+        
+        // Redirigir a la página de detalles del producto
+        window.location.href = 'product-info.html';
+    } catch (error) {
+        console.error('Error al seleccionar el producto:', error);
+        // Mostrar mensaje de error al usuario
+        alert('Ocurrió un error al cargar el producto. Por favor, intente nuevamente.');
+    }
+}
+
+// Asegurarse de que la función esté disponible globalmente
+window.seleccionarProducto = seleccionarProducto;

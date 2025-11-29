@@ -1,17 +1,21 @@
-* {
+*  {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f3f4f6;
+
+body{
+  background-color: #F8F9FA;
 }
+
+.logo {
+  margin: auto;
+  display: block;
+  max-width: 100%;
+  padding-top: 2rem;
+}
+
 .login-container {
   background-color: #ffffff;
   padding: 40px 32px;
@@ -19,19 +23,21 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 340px;
-  margin: auto;               /* centrado horizontal */
+  margin: auto;               
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
-  transform: translate(-50%, -50%); /* centrado vertical */
+  transform: translate(-50%, -50%); 
 
 }
+
 h1 {
   font-size: 24px;
   font-weight: 600;
   color: #333333;
   margin-bottom: 24px;
 }
+
 input[type="text"], input[type="password"] {
   width: 100%;
   padding: 12px 16px;
@@ -40,6 +46,7 @@ input[type="text"], input[type="password"] {
     border-radius: 4px;
     font-size: 16px;
 }
+
 button {
   width: 100%;
   padding: 12px 16px;
@@ -53,16 +60,40 @@ button {
 button:hover {
   background-color: #d97706;
 }
+
 .links {
   margin-top: 16px;
   font-size: 14px;
 }
+
 a {
   color: #6B7280;
     text-decoration: none;
     margin: 4px 0;
     display: block;
+    text-align: center;
 }
+
 .links a:hover {
   text-decoration: underline;
+}
+
+/*-- Tablet vertical--*/
+@media(min-width: 768px) and (max-width: 1024px){
+
+.login-container {
+  padding-top: 2rem;
+  margin-top: 2rem;
+
+}
+}
+
+/* Smartphone pequeño */
+@media (max-width: 568px) {
+  .login-container {
+    top: 60%; /* antes estaba 50% */
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    padding: 1.5rem 0.5rem;
+  }
 }

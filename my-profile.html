@@ -1,73 +1,197 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
+<head> 
+    <!-- Configuración del documento -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
+    <!-- Vista responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>eMercado - Mi Perfil</title>
+
+    <!-- Tipografía principal -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Íconos Font Awesome -->
+    <link href="css/font-awesome.min.css" rel="stylesheet"> 
+
+    <!-- Tema claro/oscuro -->
+    <link rel="stylesheet" href="css/theme-my profile.css">
+
+    <!-- Estilos propios de esta página -->
+    <link rel="stylesheet" href="css/my-profile.css">
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/my-profile.js"></script>
+
+    <!-- Barra de navegación superior -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+
+        <!-- Interruptor de tema -->
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider round"></span>
+        </label>
+
+        <div class="container">
+
+            <!-- Botón hamburguesa para móviles -->
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+                aria-label="Toggle navigation"> 
+                <span class="navbar-toggler-icon"></span> 
+            </button>
+
+            <!-- Menú principal -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav w-100 justify-content-between">
+
+                    <!-- Enlaces de navegación -->
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
+
+                    <!-- Carrito -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fa fa-shopping-cart"></i> Mi carrito 
+                            <span id="cart-count" class="badge bg-warning text-dark">0</span>
+                        </a>
+                    </li>
+
+                    <!-- Dropdown del usuario -->
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                            <!-- Imagen del usuario en la barra -->
+                            <img id="imagenPerfilNav" src="" alt="Imagen de perfil"
+                                 style="width: 30px; height: 30px; border-radius: 50%; 
+                                        display: none; margin-right: 8px;">
+
+                            <!-- Nombre del usuario -->
+                            <span id="nombreDeUsuario">Usuario</span>
+                        </a>
+
+                        <!-- Opciones del usuario -->
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar Sesión</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main>
+        <div class="container">
+
+            <div class="container-main p-4">
+
+                <!-- Título -->
+                <h2 class="text-center mb-4">Mi Perfil</h2>
+
+                <!-- Foto de perfil -->
+                <div class="text-center mb-4">
+
+                    <!-- Imagen por defecto -->
+                    <img src="https://via.placeholder.com/120x120?text=Foto+Perfil"
+                         alt="Foto de perfil" class="profile-pic" id="profile-pic">
+
+                    <!-- Input oculto para subir foto -->
+                    <input type="file" id="photo-upload" accept="image/jpeg, image/png" style="display: none;">
+
+                    <!-- Botón para cambiar imagen -->
+                    <button class="change-photo-btn" id="change-photo-btn">Cambiar foto</button>
+                </div>
+
+                <!-- Campos del perfil -->
+                <div class="form-group">
+                    <input type="text" class="form-control" value="Nombre" readonly>
+                    <button class="modify-btn">Modificar</button>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" value="Apellido" readonly>
+                    <button class="modify-btn">Modificar</button>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" class="form-control" value="email" readonly>
+                    <button class="modify-btn">Modificar</button>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" class="form-control" value="Telefono" readonly>
+                    <button class="modify-btn">Modificar</button>
+                </div>
+
+                <!-- Botón para guardar cambios -->
+                <button class="save-btn">Guardar</button>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer-->
+    <footer class="text-muted">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Columna 1 -->
+                <div class="col-md-4 footer-column">
+                    <strong>e-Mercado</strong>
+                    <p>Tu tienda en línea de confianza</p>
+                </div>
+
+                <!-- Columna 2 -->
+                <div class="col-md-4 footer-column">
+                    <strong>Contacto</strong>
+                    <p>contacto@emercado.com</p>
+                    <p>+123 456 7890</p>
+                </div>
+
+                <!-- Columna 3 -->
+                <div class="col-md-4 footer-column">
+                    <strong>Enlaces</strong>
+                    <a href="index.html">Inicio</a>
+                    <a href="categories.html">Categorías</a>
+                </div>
+
+            </div>
+
+            <!-- Separador -->
+            <hr style="border-top: 1px solid #444; margin: 1rem 0;">
+
+            <!-- Texto final -->
+            <p class="text-center mt-2">
+                Este sitio forma parte de 
+                <a href="https://jovenesaprogramar.edu.uy/" target="_blank">
+                    Jóvenes a Programar
+                </a>
+            </p>
+
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script> 
+    <script src="js/theme.js"></script> 
+    <script src="js/my-profile.js"></script>
+
 </body>
 
 </html>

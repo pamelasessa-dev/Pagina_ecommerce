@@ -2,65 +2,245 @@
 <html lang="es">
 
 <head>
+  <!-- Configuración básica de la página -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Título de la pestaña -->
   <title>eMercado - Todo lo que busques está aquí</title>
+
+  <!-- Tipografías y estilos -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+
+  <!-- CSS de modo oscuro del carrito -->
+  <link rel="stylesheet" href="css/theme-cart.css">
+  <!-- CSS del carrito -->
+  <link rel="stylesheet" href="css/cart.css">
 </head>
 
 <body>
+
+  <!-- NAVBAR PRINCIPAL -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+
+    <!-- Switch de modo oscuro -->
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider round"></span>
+    </label>
+
     <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+
+      <!-- BOTÓN HAMBURGUESA PARA MOBILE -->
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
+      <!-- CONTENEDOR DE ITEMS DEL MENÚ -->
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
+
+          <!-- Inicio -->
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active" href="index.html">Inicio</a>
           </li>
+
+          <!-- Categorías -->
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
           </li>
+
+          <!-- Vender -->
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
+
+          <!-- Carrito -->
           <li class="nav-item">
+            <a class="nav-link" href="cart.html">
+              🛒 Mi carrito <span id="cart-count" class="badge bg-warning text-dark">0</span>
+            </a>
+          </li>
+
+          <!-- Perfil del usuario -->
+          <li class="nav-item dropdown">
+
+            <!-- Botón Dropdown -->
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+
+              <!-- Imagen de perfil (oculta inicialmente) -->
+              <img id="imagenPerfilNav" src="" alt="Imagen de perfil"
+                style="width: 30px; height: 30px; border-radius: 50%; display: none; margin-right: 8px;">
+
+              <span id="nombreDeUsuario">Usuario</span>
+            </a>
+
+            <!-- Opciones del dropdown -->
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar Sesión</a></li>
+            </ul>
+
           </li>
         </ul>
       </div>
+
     </div>
   </nav>
+
+  <!-- CONTENIDO PRINCIPAL DEL CARRITO -->
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div class="container my-4">
+
+      <h2>Mi carrito</h2>
+
+      <!-- Aquí se insertan los productos del carrito desde JS -->
+      <div id="contenedorCarrito" class="mt-4"></div>
+
+      <!-- Resumen de costos generado por JS -->
+      <div id="resumenCostos" class="container mt-5"></div>
+
+      <!-- Formulario de envío y pago -->
+      <div id="envioYPago" class="container mt-5"></div>
+
     </div>
   </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+
+  <!-- MODAL PARA ELEGIR FORMA DE PAGO -->
+  <div class="modal fade" id="formaPagoModal" tabindex="-1" aria-labelledby="formaPagoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Header del modal -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="formaPagoModalLabel">Seleccionar forma de pago</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="modal-body">
+
+          <!-- Opción Tarjeta -->
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="pagoMetodo" id="credito">
+            <label class="form-check-label" for="credito">Tarjeta de Crédito</label>
+          </div>
+
+          <!-- Campos tarjeta -->
+          <div id="campos-tarjeta" class="p-3 border mt-2 mb-3" disabled>
+            <div class="mb-3">
+              <label for="numTarjeta" class="form-label">Número de tarjeta</label>
+              <input type="text" class="form-control" id="numTarjeta" required disabled>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="vencimiento" class="form-label">Vencimiento (MM/AA)</label>
+                <input type="text" class="form-control" id="vencimiento" required disabled>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="cvv" class="form-label">CVV</label>
+                <input type="text" class="form-control" id="cvv" required disabled>
+              </div>
+            </div>
+          </div>
+
+          <!-- Opción Transferencia -->
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="pagoMetodo" id="transferencia">
+            <label class="form-check-label" for="transferencia">Transferencia Bancaria</label>
+          </div>
+
+          <!-- Campos transferencia -->
+          <div id="campos-transferencia" class="p-3 border mt-2" disabled>
+            <div class="mb-3">
+              <label for="numCuenta" class="form-label">Número de cuenta</label>
+              <input type="text" class="form-control" id="numCuenta" required disabled>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer del modal -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" id="modalGuardarBtn">Guardar</button>
+        </div>
+
+      </div>
     </div>
   </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-white mt-5 py-4">
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Columna 1 -->
+        <div class="col-md-6">
+          <h5>e-Mercado</h5>
+          <p>Tu tienda en línea de confianza</p>
+        </div>
+
+        <!-- Columna 2 -->
+        <div class="col-md-3">
+          <h5>Contacto</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-envelope me-2"></i> contacto@emercado.com</li>
+            <li><i class="fas fa-phone me-2"></i> +123 456 7890</li>
+          </ul>
+        </div>
+
+        <!-- Columna 3 -->
+        <div class="col-md-3">
+          <h5>Enlaces</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="text-white">Inicio</a></li>
+            <li><a href="categories.html" class="text-white">Categorías</a></li>
+            <li><a href="sell.html" class="text-white">Vender</a></li>
+            <li class="nav-item"><a class="nav-link" href="cart.html">Carrito</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="my-4">
+
+      <!-- Créditos -->
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 e-Mercado. Todos los derechos reservados.</p>
+      </div>
+
+    </div>
+
+    <div class="container">
+      <p class="float-end"><a href="#" class="text-white">Volver arriba</a></p>
+      <p>Este sitio forma parte de
+        <a href="https://jovenesaprogramar.edu.uy/" class="text-white" target="_blank">Jóvenes a Programar</a>
+      </p>
+    </div>
+
+  </footer>
+
+  <!-- SPINNER DE CARGA -->
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div><div></div><div></div><div></div>
+    </div>
+  </div>
+
+  <!-- Scripts JS -->
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
-</body>
+  <script src="js/theme.js"></script>
 
+</body>
 </html>
