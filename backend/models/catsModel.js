@@ -13,6 +13,8 @@ module.exports = {
     //obtener una categoría por ID
     getById: (id) => {
         const cats = module.exports.getAll();
-        return cats.find(c => c.id === id) || null;
+        const numId = parseInt(id);
+        
+        return cats.find(c => c.id === numId) || null;
     }
 };

@@ -17,21 +17,5 @@ module.exports = {
         return JSON.parse(data);
     },
 
-    // Agregar un comentario a un producto
-    addComment: (productId, commentData) => {
-        const filePath = path.join(commentsFolder, `${productId}.json`);
 
-        let comments = [];
-
-        if (fs.existsSync(filePath)) {
-            const data = fs.readFileSync(filePath, "utf-8");
-            comments = JSON.parse(data);
-        }
-
-        comments.push(commentData);
-
-        fs.writeFileSync(filePath, JSON.stringify(comments, null, 2));
-
-        return commentData;
-    }
 };

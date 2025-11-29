@@ -15,6 +15,10 @@ const authRoutes = require('./routes/auth');
 
 app.use('/api', authRoutes);
 
+const authRoutes = require('./routes/auth');
+app.use('/auth', authRoutes);
+
+
 // Middleware para permitir JSON
 app.use(express.json());
 
