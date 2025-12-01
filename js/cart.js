@@ -272,6 +272,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const contenedor = document.getElementById(CONTENEDOR_PRODUCTOS);
     const formContainer = document.getElementById(ENVIO_Y_PAGO);
 
+    // Validar que los contenedores existan (solo en cart.html)
+    if (!contenedor || !formContainer) {
+        return; // Salir silenciosamente si no es la página del carrito
+    }
+
     // Renderizar productos y costos
     if (carrito.length === 0) {
         contenedor.innerHTML = `
@@ -406,22 +411,4 @@ document.addEventListener("DOMContentLoaded", () => {
     // Inicializar lógica del modal de pago
     handlePagoModal();
 
-});
-const form = document.getElementById("cart-form");
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const items = Array.from(new URLSearchParams(document.getElementById("items").value)).map(item => ({ id: item.split("-")[0], quantity: parseInt(item.split("-")[1]) }));
-  try {
-    const response = await fetch("/cart", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ items })
-    });
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
 });
