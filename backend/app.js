@@ -7,22 +7,16 @@ const puerto = 3000; // Indico en qué puerto voy a escuchar
 const cors = require("cors");  
 
 app.use(cors());
-
+// Middleware para permitir JSON
+app.use(express.json());
 // Importar middleware de autenticación
 const verifyToken = require('./middleware/verifyToken');
-
-const authRoutes = require('./routes/auth');
-
-app.use('/api', authRoutes);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
 
-// Middleware para permitir JSON
-app.use(express.json());
-
-// 🔐 RUTAS PROTEGIDAS (requieren token JWT)
+//  RUTAS PROTEGIDAS (requieren token JWT)
 
 // ruta a carrito
 const cartRoute = require("./routes/cartRoute");

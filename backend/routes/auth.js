@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 
-// 🔹 Por ahora simulamos una base de usuarios
+//  Por ahora simulamos una base de usuarios
 const USERS = [
     { id: 1, username: "admin", password: "1234" }
 ];

@@ -22,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/pamelasessa-dev/Pagina_ecommerce/issues"
   },
-  "homepage": "https://github.com/pamelasessa-dev/Pagina_ecommerce#readme"
+  "homepage": "https://github.com/pamelasessa-dev/Pagina_ecommerce#readme",
+  "devDependencies": {}
 }
