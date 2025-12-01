@@ -1,3 +1,5 @@
+const express = require("express");
+const router = express.Router();
 const cartModel = require("../models/cartModel");
 
 const emptyCart = async (req, res) => {
@@ -11,6 +13,6 @@ const emptyCart = async (req, res) => {
   }
 };
 
-module.exports = {
-  emptyCart
-};
+router.post("/:userId/empty", emptyCart);
+
+module.exports = router;

@@ -4,13 +4,16 @@ const app = express(); // Instancia de express
 
 const puerto = 3000; // Indico en qué puerto voy a escuchar
 
-const authRoutes = require('./routes/auth');
-
-app.use('/api', authRoutes);
-
+// Habilitar CORS
+const cors = require('cors');
+app.use(cors());
 
 // Middleware para permitir JSON
 app.use(express.json());
+
+const authRoutes = require('./routes/auth');
+
+app.use('/api', authRoutes);
 
 // ruta a carrito
 const cartRoute = require("./routes/cartRoute");
