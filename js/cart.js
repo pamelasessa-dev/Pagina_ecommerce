@@ -407,3 +407,21 @@ document.addEventListener("DOMContentLoaded", () => {
     handlePagoModal();
 
 });
+const form = document.getElementById("cart-form");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const items = Array.from(new URLSearchParams(document.getElementById("items").value)).map(item => ({ id: item.split("-")[0], quantity: parseInt(item.split("-")[1]) }));
+  try {
+    const response = await fetch("/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ items })
+    });
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+});
